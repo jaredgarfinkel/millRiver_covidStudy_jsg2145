@@ -1,0 +1,2261 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={20201227-millRiver\_covidStudy\_jsg2145},
+  pdfauthor={Jared Garfinkel},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs}
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+
+\title{20201227-millRiver\_covidStudy\_jsg2145}
+\author{Jared Garfinkel}
+\date{12/27/2020}
+
+\begin{document}
+\maketitle
+
+\hypertarget{part-1}{%
+\section{Part 1}\label{part-1}}
+
+\hypertarget{read-in-data}{%
+\subsection{Read in data}\label{read-in-data}}
+
+\hypertarget{keep-the-outcome-cases-separate}{%
+\subsection{Keep the outcome (cases)
+separate}\label{keep-the-outcome-cases-separate}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cases =}\StringTok{ }\NormalTok{readxl}\OperatorTok{::}\KeywordTok{read_excel}\NormalTok{(}\StringTok{"./data/NassauCountyCOVID.xlsx"}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\NormalTok{janitor}\OperatorTok{::}\KeywordTok{clean_names}\NormalTok{() }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{select}\NormalTok{(namelsad, pos_}\DecValTok{12102020}\NormalTok{)}
+
+\NormalTok{cases}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 134 x 2
+##    namelsad               pos_12102020
+##    <chr>                         <dbl>
+##  1 Albertson CDP                   188
+##  2 Atlantic Beach village          101
+##  3 Baldwin CDP                    1235
+##  4 Baldwin Harbor CDP              392
+##  5 Barnum Island CDP               118
+##  6 Baxter Estates village           40
+##  7 Bay Park CDP                     80
+##  8 Bayville village                323
+##  9 Bellerose Terrace CDP           114
+## 10 Bellerose village                49
+## # ... with 124 more rows
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df =}\StringTok{ }\NormalTok{readxl}\OperatorTok{::}\KeywordTok{read_excel}\NormalTok{(}\StringTok{"./data/DianaData_11_25_20.xlsx"}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\NormalTok{janitor}\OperatorTok{::}\KeywordTok{clean_names}\NormalTok{()}
+
+\CommentTok{# observe dataframe}
+
+\NormalTok{skimr}\OperatorTok{::}\KeywordTok{skim}\NormalTok{(df)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{longtable}[]{@{}ll@{}}
+\caption{Data summary}\tabularnewline
+\toprule
+\endhead
+Name & df\tabularnewline
+Number of rows & 134\tabularnewline
+Number of columns & 48\tabularnewline
+\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ &\tabularnewline
+Column type frequency: &\tabularnewline
+character & 1\tabularnewline
+numeric & 47\tabularnewline
+\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ &\tabularnewline
+Group variables & None\tabularnewline
+\bottomrule
+\end{longtable}
+
+\textbf{Variable type: character}
+
+\begin{longtable}[]{@{}lrrrrrrr@{}}
+\toprule
+skim\_variable & n\_missing & complete\_rate & min & max & empty &
+n\_unique & whitespace\tabularnewline
+\midrule
+\endhead
+geographic\_area\_name & 0 & 1 & 10 & 29 & 0 & 134 & 0\tabularnewline
+\bottomrule
+\end{longtable}
+
+\textbf{Variable type: numeric}
+
+\begin{longtable}[]{@{}lrrrrrrrrrl@{}}
+\toprule
+\begin{minipage}[b]{0.09\columnwidth}\raggedright
+skim\_variable\strut
+\end{minipage} & \begin{minipage}[b]{0.05\columnwidth}\raggedleft
+n\_missing\strut
+\end{minipage} & \begin{minipage}[b]{0.06\columnwidth}\raggedleft
+complete\_rate\strut
+\end{minipage} & \begin{minipage}[b]{0.05\columnwidth}\raggedleft
+mean\strut
+\end{minipage} & \begin{minipage}[b]{0.05\columnwidth}\raggedleft
+sd\strut
+\end{minipage} & \begin{minipage}[b]{0.05\columnwidth}\raggedleft
+p0\strut
+\end{minipage} & \begin{minipage}[b]{0.05\columnwidth}\raggedleft
+p25\strut
+\end{minipage} & \begin{minipage}[b]{0.05\columnwidth}\raggedleft
+p50\strut
+\end{minipage} & \begin{minipage}[b]{0.05\columnwidth}\raggedleft
+p75\strut
+\end{minipage} & \begin{minipage}[b]{0.05\columnwidth}\raggedleft
+p100\strut
+\end{minipage} & \begin{minipage}[b]{0.19\columnwidth}\raggedright
+hist\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.09\columnwidth}\raggedright
+p\_covid\_111020\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+0\strut
+\end{minipage} & \begin{minipage}[t]{0.06\columnwidth}\raggedleft
+1.00\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+2.92\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+1.16\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+0.29\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+2.17\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+2.66\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+3.37\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+7.50\strut
+\end{minipage} & \begin{minipage}[t]{0.19\columnwidth}\raggedright
+▂▇▃▂▁\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.09\columnwidth}\raggedright
+p\_covid\_change\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+0\strut
+\end{minipage} & \begin{minipage}[t]{0.06\columnwidth}\raggedleft
+1.00\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+2.61\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+1.15\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+-0.85\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+1.96\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+2.33\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+3.07\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+6.42\strut
+\end{minipage} & \begin{minipage}[t]{0.19\columnwidth}\raggedright
+▁▅▇▂▁\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.09\columnwidth}\raggedright
+t\_covid\_110820\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+0\strut
+\end{minipage} & \begin{minipage}[t]{0.06\columnwidth}\raggedleft
+1.00\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+319.09\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+425.52\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+3.00\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+48.25\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+164.00\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+426.00\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+2630.00\strut
+\end{minipage} & \begin{minipage}[t]{0.19\columnwidth}\raggedright
+▇▁▁▁▁\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.09\columnwidth}\raggedright
+t\_pop\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+0\strut
+\end{minipage} & \begin{minipage}[t]{0.06\columnwidth}\raggedleft
+1.00\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+10115.84\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+11296.19\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+254.00\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+2008.50\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+5580.50\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+15694.50\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+55399.00\strut
+\end{minipage} & \begin{minipage}[t]{0.19\columnwidth}\raggedright
+▇▂▁▁▁\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.09\columnwidth}\raggedright
+p\_educated\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+0\strut
+\end{minipage} & \begin{minipage}[t]{0.06\columnwidth}\raggedleft
+1.00\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+55.15\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+16.93\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+17.40\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+43.43\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+56.15\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+68.73\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+87.50\strut
+\end{minipage} & \begin{minipage}[t]{0.19\columnwidth}\raggedright
+▂▇▇▇▆\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.09\columnwidth}\raggedright
+p\_disability\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+0\strut
+\end{minipage} & \begin{minipage}[t]{0.06\columnwidth}\raggedleft
+1.00\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+7.85\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+2.55\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+0.00\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+6.23\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+7.80\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+9.50\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+17.90\strut
+\end{minipage} & \begin{minipage}[t]{0.19\columnwidth}\raggedright
+▁▇▇▂▁\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.09\columnwidth}\raggedright
+p\_white\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+0\strut
+\end{minipage} & \begin{minipage}[t]{0.06\columnwidth}\raggedleft
+1.00\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+69.70\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+22.69\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+1.40\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+62.15\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+76.60\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+86.40\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+98.10\strut
+\end{minipage} & \begin{minipage}[t]{0.19\columnwidth}\raggedright
+▁▁▂▆▇\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.09\columnwidth}\raggedright
+p\_not\_white\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+0\strut
+\end{minipage} & \begin{minipage}[t]{0.06\columnwidth}\raggedleft
+1.00\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+30.30\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+22.69\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+1.90\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+13.60\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+23.40\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+37.85\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+98.60\strut
+\end{minipage} & \begin{minipage}[t]{0.19\columnwidth}\raggedright
+▇▆▂▁▁\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.09\columnwidth}\raggedright
+p\_black\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+0\strut
+\end{minipage} & \begin{minipage}[t]{0.06\columnwidth}\raggedleft
+1.00\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+6.19\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+12.94\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+0.00\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+0.40\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+1.40\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+3.92\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+75.00\strut
+\end{minipage} & \begin{minipage}[t]{0.19\columnwidth}\raggedright
+▇▁▁▁▁\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.09\columnwidth}\raggedright
+p\_hispanic\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+0\strut
+\end{minipage} & \begin{minipage}[t]{0.06\columnwidth}\raggedleft
+1.00\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+11.44\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+10.20\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+0.00\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+4.20\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+8.50\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+15.60\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+52.60\strut
+\end{minipage} & \begin{minipage}[t]{0.19\columnwidth}\raggedright
+▇▃▂▁▁\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.09\columnwidth}\raggedright
+p\_new\_moms\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+0\strut
+\end{minipage} & \begin{minipage}[t]{0.06\columnwidth}\raggedleft
+1.00\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+4.37\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+2.94\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+0.00\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+2.60\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+4.05\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+5.30\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+16.70\strut
+\end{minipage} & \begin{minipage}[t]{0.19\columnwidth}\raggedright
+▆▇▂▁▁\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.09\columnwidth}\raggedright
+p\_fertility\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+0\strut
+\end{minipage} & \begin{minipage}[t]{0.06\columnwidth}\raggedleft
+1.00\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+12.10\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+6.02\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+0.00\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+8.00\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+11.85\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+15.25\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+38.10\strut
+\end{minipage} & \begin{minipage}[t]{0.19\columnwidth}\raggedright
+▃▇▃▁▁\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.09\columnwidth}\raggedright
+p\_essential\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+0\strut
+\end{minipage} & \begin{minipage}[t]{0.06\columnwidth}\raggedleft
+1.00\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+34.03\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+11.64\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+3.60\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+25.60\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+33.90\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+39.55\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+65.70\strut
+\end{minipage} & \begin{minipage}[t]{0.19\columnwidth}\raggedright
+▁▇▇▃▁\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.09\columnwidth}\raggedright
+p\_vacant\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+0\strut
+\end{minipage} & \begin{minipage}[t]{0.06\columnwidth}\raggedleft
+1.00\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+6.72\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+5.57\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+0.00\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+3.23\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+5.15\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+8.45\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+34.00\strut
+\end{minipage} & \begin{minipage}[t]{0.19\columnwidth}\raggedright
+▇▅▁▁▁\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.09\columnwidth}\raggedright
+p\_sfr\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+0\strut
+\end{minipage} & \begin{minipage}[t]{0.06\columnwidth}\raggedleft
+1.00\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+84.72\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+16.96\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+4.40\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+76.58\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+91.95\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+97.00\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+100.00\strut
+\end{minipage} & \begin{minipage}[t]{0.19\columnwidth}\raggedright
+▁▁▁▂▇\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.09\columnwidth}\raggedright
+p\_mfr20\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+0\strut
+\end{minipage} & \begin{minipage}[t]{0.06\columnwidth}\raggedleft
+1.00\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+5.79\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+10.26\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+0.00\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+0.00\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+1.20\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+6.50\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+80.40\strut
+\end{minipage} & \begin{minipage}[t]{0.19\columnwidth}\raggedright
+▇▁▁▁▁\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.09\columnwidth}\raggedright
+median\_rooms\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+21\strut
+\end{minipage} & \begin{minipage}[t]{0.06\columnwidth}\raggedleft
+0.84\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+6.73\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+0.89\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+3.60\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+6.20\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+6.80\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+7.10\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+8.50\strut
+\end{minipage} & \begin{minipage}[t]{0.19\columnwidth}\raggedright
+▁▂▆▇▃\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.09\columnwidth}\raggedright
+mhv\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+4\strut
+\end{minipage} & \begin{minipage}[t]{0.06\columnwidth}\raggedleft
+0.97\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+741786.92\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+407038.18\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+293400.00\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+449200.00\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+582700.00\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+898875.00\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+1963500.00\strut
+\end{minipage} & \begin{minipage}[t]{0.19\columnwidth}\raggedright
+▇▂▂▁▁\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.09\columnwidth}\raggedright
+p\_female\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+0\strut
+\end{minipage} & \begin{minipage}[t]{0.06\columnwidth}\raggedleft
+1.00\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+51.06\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+2.76\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+41.30\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+50.16\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+51.27\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+52.54\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+61.04\strut
+\end{minipage} & \begin{minipage}[t]{0.19\columnwidth}\raggedright
+▁▁▇▂▁\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.09\columnwidth}\raggedright
+p\_children\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+0\strut
+\end{minipage} & \begin{minipage}[t]{0.06\columnwidth}\raggedleft
+1.00\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+22.62\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+4.91\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+11.33\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+19.95\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+21.85\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+24.71\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+41.89\strut
+\end{minipage} & \begin{minipage}[t]{0.19\columnwidth}\raggedright
+▂▇▃▁▁\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.09\columnwidth}\raggedright
+p\_seniors\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+0\strut
+\end{minipage} & \begin{minipage}[t]{0.06\columnwidth}\raggedleft
+1.00\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+18.77\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+5.33\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+6.76\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+15.48\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+17.81\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+21.11\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+46.13\strut
+\end{minipage} & \begin{minipage}[t]{0.19\columnwidth}\raggedright
+▂▇▂▁▁\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.09\columnwidth}\raggedright
+p\_renter\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+0\strut
+\end{minipage} & \begin{minipage}[t]{0.06\columnwidth}\raggedleft
+1.00\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+15.28\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+13.04\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+0.00\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+5.93\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+11.65\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+22.75\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+64.40\strut
+\end{minipage} & \begin{minipage}[t]{0.19\columnwidth}\raggedright
+▇▅▂▁▁\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.09\columnwidth}\raggedright
+p\_mortgage\_stress\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+0\strut
+\end{minipage} & \begin{minipage}[t]{0.06\columnwidth}\raggedleft
+1.00\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+33.01\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+9.38\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+9.80\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+26.63\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+31.90\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+38.18\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+76.20\strut
+\end{minipage} & \begin{minipage}[t]{0.19\columnwidth}\raggedright
+▁▇▃▁▁\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.09\columnwidth}\raggedright
+p\_rent\_stress\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+0\strut
+\end{minipage} & \begin{minipage}[t]{0.06\columnwidth}\raggedleft
+1.00\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+41.16\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+23.87\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+0.00\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+29.15\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+43.95\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+53.98\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+100.00\strut
+\end{minipage} & \begin{minipage}[t]{0.19\columnwidth}\raggedright
+▃▅▇▂▁\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.09\columnwidth}\raggedright
+p\_housing\_stress\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+0\strut
+\end{minipage} & \begin{minipage}[t]{0.06\columnwidth}\raggedleft
+1.00\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+23.18\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+6.61\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+9.70\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+18.42\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+22.15\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+27.08\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+40.10\strut
+\end{minipage} & \begin{minipage}[t]{0.19\columnwidth}\raggedright
+▂▇▆▃▂\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.09\columnwidth}\raggedright
+p\_no\_car\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+0\strut
+\end{minipage} & \begin{minipage}[t]{0.06\columnwidth}\raggedleft
+1.00\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+5.47\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+4.57\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+0.00\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+2.40\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+4.90\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+6.80\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+24.50\strut
+\end{minipage} & \begin{minipage}[t]{0.19\columnwidth}\raggedright
+▇▆▂▁▁\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.09\columnwidth}\raggedright
+p\_unemployed\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+0\strut
+\end{minipage} & \begin{minipage}[t]{0.06\columnwidth}\raggedleft
+1.00\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+3.89\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+1.81\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+0.00\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+2.82\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+3.75\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+4.88\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+13.20\strut
+\end{minipage} & \begin{minipage}[t]{0.19\columnwidth}\raggedright
+▃▇▂▁▁\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.09\columnwidth}\raggedright
+p\_transit\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+0\strut
+\end{minipage} & \begin{minipage}[t]{0.06\columnwidth}\raggedleft
+1.00\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+18.51\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+8.42\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+1.70\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+12.43\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+16.95\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+22.20\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+50.40\strut
+\end{minipage} & \begin{minipage}[t]{0.19\columnwidth}\raggedright
+▃▇▃▁▁\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.09\columnwidth}\raggedright
+p\_workat\_home\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+0\strut
+\end{minipage} & \begin{minipage}[t]{0.06\columnwidth}\raggedleft
+1.00\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+5.98\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+4.58\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+0.00\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+3.02\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+4.70\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+7.55\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+27.60\strut
+\end{minipage} & \begin{minipage}[t]{0.19\columnwidth}\raggedright
+▇▅▁▁▁\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.09\columnwidth}\raggedright
+mhi\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+1\strut
+\end{minipage} & \begin{minipage}[t]{0.06\columnwidth}\raggedleft
+0.99\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+129230.47\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+46844.82\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+0.00\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+105469.00\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+123464.00\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+154770.00\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+249583.00\strut
+\end{minipage} & \begin{minipage}[t]{0.19\columnwidth}\raggedright
+▁▃▇▂▂\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.09\columnwidth}\raggedright
+p\_snap\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+0\strut
+\end{minipage} & \begin{minipage}[t]{0.06\columnwidth}\raggedleft
+1.00\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+3.03\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+3.31\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+0.00\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+1.00\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+2.30\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+4.07\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+20.50\strut
+\end{minipage} & \begin{minipage}[t]{0.19\columnwidth}\raggedright
+▇▂▁▁▁\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.09\columnwidth}\raggedright
+p\_public\_ins\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+0\strut
+\end{minipage} & \begin{minipage}[t]{0.06\columnwidth}\raggedleft
+1.00\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+26.09\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+5.98\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+13.70\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+22.30\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+25.30\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+28.75\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+48.40\strut
+\end{minipage} & \begin{minipage}[t]{0.19\columnwidth}\raggedright
+▂▇▅▁▁\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.09\columnwidth}\raggedright
+p\_no\_health\_ins\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+0\strut
+\end{minipage} & \begin{minipage}[t]{0.06\columnwidth}\raggedleft
+1.00\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+3.79\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+3.22\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+0.00\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+1.60\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+2.80\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+5.00\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+18.60\strut
+\end{minipage} & \begin{minipage}[t]{0.19\columnwidth}\raggedright
+▇▃▁▁▁\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.09\columnwidth}\raggedright
+p\_poverty\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+0\strut
+\end{minipage} & \begin{minipage}[t]{0.06\columnwidth}\raggedleft
+1.00\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+4.43\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+3.30\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+0.00\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+2.50\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+3.70\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+5.38\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+19.30\strut
+\end{minipage} & \begin{minipage}[t]{0.19\columnwidth}\raggedright
+▇▆▁▁▁\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.09\columnwidth}\raggedright
+p\_poverty\_kids\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+0\strut
+\end{minipage} & \begin{minipage}[t]{0.06\columnwidth}\raggedleft
+1.00\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+5.04\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+5.73\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+0.00\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+1.40\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+3.30\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+6.45\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+27.50\strut
+\end{minipage} & \begin{minipage}[t]{0.19\columnwidth}\raggedright
+▇▂▁▁▁\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.09\columnwidth}\raggedright
+p\_poverty\_seniors\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+0\strut
+\end{minipage} & \begin{minipage}[t]{0.06\columnwidth}\raggedleft
+1.00\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+4.22\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+3.27\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+0.00\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+1.80\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+3.80\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+5.90\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+15.20\strut
+\end{minipage} & \begin{minipage}[t]{0.19\columnwidth}\raggedright
+▇▇▃▁▁\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.09\columnwidth}\raggedright
+p\_familywith\_kids\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+0\strut
+\end{minipage} & \begin{minipage}[t]{0.06\columnwidth}\raggedleft
+1.00\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+33.24\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+8.46\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+13.10\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+28.10\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+32.70\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+37.30\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+65.40\strut
+\end{minipage} & \begin{minipage}[t]{0.19\columnwidth}\raggedright
+▂▇▆▁▁\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.09\columnwidth}\raggedright
+p\_single\_moms\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+0\strut
+\end{minipage} & \begin{minipage}[t]{0.06\columnwidth}\raggedleft
+1.00\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+3.11\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+3.60\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+0.60\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+1.40\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+1.90\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+3.35\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+21.50\strut
+\end{minipage} & \begin{minipage}[t]{0.19\columnwidth}\raggedright
+▇▁▁▁▁\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.09\columnwidth}\raggedright
+a\_fam\_size\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+0\strut
+\end{minipage} & \begin{minipage}[t]{0.06\columnwidth}\raggedleft
+1.00\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+3.39\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+0.32\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+2.57\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+3.20\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+3.36\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+3.54\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+4.84\strut
+\end{minipage} & \begin{minipage}[t]{0.19\columnwidth}\raggedright
+▁▇▃▁▁\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.09\columnwidth}\raggedright
+p\_other\_rel\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+0\strut
+\end{minipage} & \begin{minipage}[t]{0.06\columnwidth}\raggedleft
+1.00\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+6.99\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+4.80\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+0.00\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+4.03\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+5.80\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+8.50\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+25.10\strut
+\end{minipage} & \begin{minipage}[t]{0.19\columnwidth}\raggedright
+▇▇▂▁▁\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.09\columnwidth}\raggedright
+p\_married\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+0\strut
+\end{minipage} & \begin{minipage}[t]{0.06\columnwidth}\raggedleft
+1.00\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+61.03\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+9.36\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+36.70\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+55.88\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+61.90\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+66.97\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+85.00\strut
+\end{minipage} & \begin{minipage}[t]{0.19\columnwidth}\raggedright
+▂▃▇▅▁\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.09\columnwidth}\raggedright
+p\_foreign\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+0\strut
+\end{minipage} & \begin{minipage}[t]{0.06\columnwidth}\raggedleft
+1.00\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+20.65\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+10.83\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+1.90\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+11.43\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+18.20\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+29.75\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+45.10\strut
+\end{minipage} & \begin{minipage}[t]{0.19\columnwidth}\raggedright
+▅▇▅▅▂\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.09\columnwidth}\raggedright
+p\_non\_english\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+0\strut
+\end{minipage} & \begin{minipage}[t]{0.06\columnwidth}\raggedleft
+1.00\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+26.72\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+13.48\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+1.00\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+15.43\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+23.50\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+37.58\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+64.00\strut
+\end{minipage} & \begin{minipage}[t]{0.19\columnwidth}\raggedright
+▃▇▆▃▁\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.09\columnwidth}\raggedright
+p\_internet\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+0\strut
+\end{minipage} & \begin{minipage}[t]{0.06\columnwidth}\raggedleft
+1.00\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+90.63\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+4.71\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+71.60\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+87.85\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+90.75\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+93.60\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+100.00\strut
+\end{minipage} & \begin{minipage}[t]{0.19\columnwidth}\raggedright
+▁▁▅▇▅\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.09\columnwidth}\raggedright
+p\_civilian\_veterans\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+0\strut
+\end{minipage} & \begin{minipage}[t]{0.06\columnwidth}\raggedleft
+1.00\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+4.32\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+1.68\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+1.10\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+3.02\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+4.20\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+5.20\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+11.80\strut
+\end{minipage} & \begin{minipage}[t]{0.19\columnwidth}\raggedright
+▅▇▃▁▁\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.09\columnwidth}\raggedright
+p\_asian\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+0\strut
+\end{minipage} & \begin{minipage}[t]{0.06\columnwidth}\raggedleft
+1.00\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+10.75\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+10.93\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+0.00\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+2.60\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+6.95\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+14.17\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+46.20\strut
+\end{minipage} & \begin{minipage}[t]{0.19\columnwidth}\raggedright
+▇▃▁▁▁\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.09\columnwidth}\raggedright
+p\_hs\_dropout\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+0\strut
+\end{minipage} & \begin{minipage}[t]{0.06\columnwidth}\raggedleft
+1.00\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+6.01\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+5.29\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+0.00\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+2.83\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+4.78\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+7.57\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedleft
+28.59\strut
+\end{minipage} & \begin{minipage}[t]{0.19\columnwidth}\raggedright
+▇▅▁▁▁\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\end{longtable}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# missing data in "median rooms", "mhv", and "mhi"}
+
+\NormalTok{df }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{filter}\NormalTok{(}\KeywordTok{is.na}\NormalTok{(mhi))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 1 x 48
+##   geographic_area~ p_covid_111020 p_covid_change t_covid_110820 t_pop p_educated
+##   <chr>                     <dbl>          <dbl>          <dbl> <dbl>      <dbl>
+## 1 Brookville vill~           2.53           2.91             90  3564       75.9
+## # ... with 42 more variables: p_disability <dbl>, p_white <dbl>,
+## #   p_not_white <dbl>, p_black <dbl>, p_hispanic <dbl>, p_new_moms <dbl>,
+## #   p_fertility <dbl>, p_essential <dbl>, p_vacant <dbl>, p_sfr <dbl>,
+## #   p_mfr20 <dbl>, median_rooms <dbl>, mhv <dbl>, p_female <dbl>,
+## #   p_children <dbl>, p_seniors <dbl>, p_renter <dbl>, p_mortgage_stress <dbl>,
+## #   p_rent_stress <dbl>, p_housing_stress <dbl>, p_no_car <dbl>,
+## #   p_unemployed <dbl>, p_transit <dbl>, p_workat_home <dbl>, mhi <dbl>,
+## #   p_snap <dbl>, p_public_ins <dbl>, p_no_health_ins <dbl>, p_poverty <dbl>,
+## #   p_poverty_kids <dbl>, p_poverty_seniors <dbl>, p_familywith_kids <dbl>,
+## #   p_single_moms <dbl>, a_fam_size <dbl>, p_other_rel <dbl>, p_married <dbl>,
+## #   p_foreign <dbl>, p_non_english <dbl>, p_internet <dbl>,
+## #   p_civilian_veterans <dbl>, p_asian <dbl>, p_hs_dropout <dbl>
+\end{verbatim}
+
+The dataset is 134 rows by 48 columns.
+
+There are several ways of handling missing data, including available
+case analysis, complete case analysis, and multiple imputation.
+
+In this case, we will simply remove the ``median rooms'' variable as it
+is not expected to contribute meaningfully to the correlation analysis.
+
+The cases missing ``mhv'' (Median Home Value) and ``mhi'' (Median
+Household Income) values are removed for the correlation analysis.
+
+This results in a loss of efficiency of 5/134 = 3.7 percent.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{data =}\StringTok{ }\NormalTok{df }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{select}\NormalTok{(}\OperatorTok{-}\NormalTok{median_rooms) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{filter}\NormalTok{(}\OperatorTok{!}\KeywordTok{is.na}\NormalTok{(mhi),}
+         \OperatorTok{!}\KeywordTok{is.na}\NormalTok{(mhv))}
+\end{Highlighting}
+\end{Shaded}
+
+The resulting dataset has 129 rows by 47 columns.
+
+\hypertarget{conduct-a-correlation-analysis}{%
+\subsection{conduct a correlation
+analysis}\label{conduct-a-correlation-analysis}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{M =}\StringTok{ }\KeywordTok{cor}\NormalTok{(data[,}\OperatorTok{-}\DecValTok{1}\NormalTok{])}
+\CommentTok{# ?corrplot}
+\KeywordTok{corrplot}\NormalTok{(M, }\DataTypeTok{type =} \KeywordTok{c}\NormalTok{(}\StringTok{"upper"}\NormalTok{), }\DataTypeTok{order =} \KeywordTok{c}\NormalTok{(}\StringTok{"hclust"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics[width=0.9\linewidth]{20201227-millRiver_covidStudy_jsg2145_files/figure-latex/unnamed-chunk-4-1}
+
+There are several race/ethnicity variables that are correlated with each
+other and economic- and education-related variables.
+
+It will be easier to examine highly correlated variables using a cutoff
+to view those correlations.
+
+We start with a cutoff of Pearson's R-squared \(\ge\) 0.7, which results
+in the following:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{output =}\StringTok{ }\KeywordTok{vector}\NormalTok{(}\DataTypeTok{mode =} \StringTok{"list"}\NormalTok{, }\DataTypeTok{length =} \DecValTok{46}\NormalTok{)}
+\NormalTok{rname =}\StringTok{ }\OtherTok{NULL}
+\NormalTok{cname =}\StringTok{ }\OtherTok{NULL}
+\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\KeywordTok{nrow}\NormalTok{(M)) \{}
+  \ControlFlowTok{for}\NormalTok{(j }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\KeywordTok{ncol}\NormalTok{(M)) \{}
+\NormalTok{    rname[[i]] =}\StringTok{ }\KeywordTok{dimnames}\NormalTok{(M)[[}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, i)]]}
+\NormalTok{    cname[[j]] =}\StringTok{ }\KeywordTok{dimnames}\NormalTok{(M)[[}\KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{, j)]]}
+\NormalTok{    output[[}\KeywordTok{c}\NormalTok{(i, j)]] =}\StringTok{ }\KeywordTok{tibble_row}\NormalTok{(i, j, rname[[i]], cname[[j]], M[[i, j]])}
+    \CommentTok{# output[[i]] = bind_rows(output[[c(i, j)]])}
+    \CommentTok{# output[[i]] = bind_rows(output[[c(i,j)]])}
+    \CommentTok{# res[[c(i, j)]] = c(i, j, rname[[i]], cname[[j]], output[[c(i, j)]])}
+\NormalTok{  \}}
+  \CommentTok{# output[[i]] = tibble(output[[c(i, j)]])}
+  \CommentTok{# res = c(i, j, rname, cname)}
+  \CommentTok{# res = bind_rows(res)}
+\NormalTok{\}}
+\CommentTok{# head(output)}
+\CommentTok{# union(output[[1]])}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{matrify =}\StringTok{ }\ControlFlowTok{function}\NormalTok{(}\DataTypeTok{pdata =}\NormalTok{ output) \{}
+  \CommentTok{# for(i in 1:46) \{}
+  \CommentTok{#   result[[i]] = vector(mode = "list", length = 46)}
+  \CommentTok{# \}}
+  \ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\DecValTok{46}\NormalTok{) \{}
+    \CommentTok{# for(j in 1:46) \{}
+\NormalTok{      result[[i]] =}\StringTok{ }\KeywordTok{tibble}\NormalTok{(pdata[[}\KeywordTok{c}\NormalTok{(i, i)]])}
+\NormalTok{  \}}
+\NormalTok{  result =}\StringTok{ }\KeywordTok{bind_rows}\NormalTok{(result)}
+  \KeywordTok{return}\NormalTok{(result)}
+    \CommentTok{# result[[i]] = bind_rows(result[[c(i, j)]])}
+\NormalTok{\}}
+  \CommentTok{# result[[i]] = bind_rows(result[[c(i, j)]])}
+\CommentTok{#   return(result)}
+\CommentTok{# \}}
+
+
+\CommentTok{# matrify()}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{matrify-2}{%
+\section{Matrify 2}\label{matrify-2}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{matrify2 =}\StringTok{ }\ControlFlowTok{function}\NormalTok{(}\DataTypeTok{pdata =}\NormalTok{ output) \{}
+\NormalTok{  result =}\StringTok{ }\OtherTok{NULL}
+  \ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\KeywordTok{length}\NormalTok{(pdata)) \{}
+    \CommentTok{# for(j in 1:46) \{}
+\NormalTok{      result[[i]] =}\StringTok{ }\KeywordTok{tibble}\NormalTok{(pdata[[i]])}
+\NormalTok{  \}}
+\NormalTok{  result =}\StringTok{ }\KeywordTok{bind_rows}\NormalTok{(result)}
+  \KeywordTok{return}\NormalTok{(result)}
+    \CommentTok{# result[[i]] = bind_rows(result[[c(i, j)]])}
+\NormalTok{\}}
+
+\NormalTok{df2 =}\StringTok{ }\KeywordTok{vector}\NormalTok{(}\DataTypeTok{mode =} \StringTok{"list"}\NormalTok{, }\DataTypeTok{length =} \DecValTok{46}\NormalTok{)}
+\ControlFlowTok{for}\NormalTok{(j }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\DecValTok{46}\NormalTok{) \{}
+\NormalTok{  df2[[j]] =}\StringTok{ }\KeywordTok{matrify2}\NormalTok{(}\DataTypeTok{pdata =}\NormalTok{ output[[j]])}
+\NormalTok{\}}
+
+\KeywordTok{head}\NormalTok{(df2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [[1]]
+## # A tibble: 46 x 5
+##        i     j `rname[[i]]`   `cname[[j]]`   `M[[i, j]]`
+##    <int> <int> <chr>          <chr>                <dbl>
+##  1     1     1 p_covid_111020 p_covid_111020      1     
+##  2     1     2 p_covid_111020 p_covid_change      0.147 
+##  3     1     3 p_covid_111020 t_covid_110820      0.371 
+##  4     1     4 p_covid_111020 t_pop               0.178 
+##  5     1     5 p_covid_111020 p_educated         -0.318 
+##  6     1     6 p_covid_111020 p_disability        0.0419
+##  7     1     7 p_covid_111020 p_white            -0.302 
+##  8     1     8 p_covid_111020 p_not_white         0.302 
+##  9     1     9 p_covid_111020 p_black             0.330 
+## 10     1    10 p_covid_111020 p_hispanic          0.393 
+## # ... with 36 more rows
+## 
+## [[2]]
+## # A tibble: 46 x 5
+##        i     j `rname[[i]]`   `cname[[j]]`   `M[[i, j]]`
+##    <int> <int> <chr>          <chr>                <dbl>
+##  1     2     1 p_covid_change p_covid_111020      0.147 
+##  2     2     2 p_covid_change p_covid_change      1     
+##  3     2     3 p_covid_change t_covid_110820     -0.0359
+##  4     2     4 p_covid_change t_pop              -0.0379
+##  5     2     5 p_covid_change p_educated         -0.214 
+##  6     2     6 p_covid_change p_disability        0.138 
+##  7     2     7 p_covid_change p_white            -0.0546
+##  8     2     8 p_covid_change p_not_white         0.0546
+##  9     2     9 p_covid_change p_black             0.0342
+## 10     2    10 p_covid_change p_hispanic          0.137 
+## # ... with 36 more rows
+## 
+## [[3]]
+## # A tibble: 46 x 5
+##        i     j `rname[[i]]`   `cname[[j]]`   `M[[i, j]]`
+##    <int> <int> <chr>          <chr>                <dbl>
+##  1     3     1 t_covid_110820 p_covid_111020      0.371 
+##  2     3     2 t_covid_110820 p_covid_change     -0.0359
+##  3     3     3 t_covid_110820 t_covid_110820      1     
+##  4     3     4 t_covid_110820 t_pop               0.941 
+##  5     3     5 t_covid_110820 p_educated         -0.556 
+##  6     3     6 t_covid_110820 p_disability        0.0921
+##  7     3     7 t_covid_110820 p_white            -0.475 
+##  8     3     8 t_covid_110820 p_not_white         0.475 
+##  9     3     9 t_covid_110820 p_black             0.476 
+## 10     3    10 t_covid_110820 p_hispanic          0.580 
+## # ... with 36 more rows
+## 
+## [[4]]
+## # A tibble: 46 x 5
+##        i     j `rname[[i]]` `cname[[j]]`   `M[[i, j]]`
+##    <int> <int> <chr>        <chr>                <dbl>
+##  1     4     1 t_pop        p_covid_111020      0.178 
+##  2     4     2 t_pop        p_covid_change     -0.0379
+##  3     4     3 t_pop        t_covid_110820      0.941 
+##  4     4     4 t_pop        t_pop               1     
+##  5     4     5 t_pop        p_educated         -0.525 
+##  6     4     6 t_pop        p_disability        0.153 
+##  7     4     7 t_pop        p_white            -0.344 
+##  8     4     8 t_pop        p_not_white         0.344 
+##  9     4     9 t_pop        p_black             0.340 
+## 10     4    10 t_pop        p_hispanic          0.453 
+## # ... with 36 more rows
+## 
+## [[5]]
+## # A tibble: 46 x 5
+##        i     j `rname[[i]]` `cname[[j]]`   `M[[i, j]]`
+##    <int> <int> <chr>        <chr>                <dbl>
+##  1     5     1 p_educated   p_covid_111020      -0.318
+##  2     5     2 p_educated   p_covid_change      -0.214
+##  3     5     3 p_educated   t_covid_110820      -0.556
+##  4     5     4 p_educated   t_pop               -0.525
+##  5     5     5 p_educated   p_educated           1    
+##  6     5     6 p_educated   p_disability        -0.326
+##  7     5     7 p_educated   p_white              0.548
+##  8     5     8 p_educated   p_not_white         -0.548
+##  9     5     9 p_educated   p_black             -0.499
+## 10     5    10 p_educated   p_hispanic          -0.750
+## # ... with 36 more rows
+## 
+## [[6]]
+## # A tibble: 46 x 5
+##        i     j `rname[[i]]` `cname[[j]]`   `M[[i, j]]`
+##    <int> <int> <chr>        <chr>                <dbl>
+##  1     6     1 p_disability p_covid_111020      0.0419
+##  2     6     2 p_disability p_covid_change      0.138 
+##  3     6     3 p_disability t_covid_110820      0.0921
+##  4     6     4 p_disability t_pop               0.153 
+##  5     6     5 p_disability p_educated         -0.326 
+##  6     6     6 p_disability p_disability        1     
+##  7     6     7 p_disability p_white             0.116 
+##  8     6     8 p_disability p_not_white        -0.116 
+##  9     6     9 p_disability p_black            -0.0843
+## 10     6    10 p_disability p_hispanic         -0.0325
+## # ... with 36 more rows
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{union_df =}\StringTok{ }\KeywordTok{bind_rows}\NormalTok{(df2) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{rename}\NormalTok{(}\StringTok{"value"}\NormalTok{ =}\StringTok{ "M[[i, j]]"}\NormalTok{,}
+         \StringTok{"column"}\NormalTok{ =}\StringTok{ "cname[[j]]"}\NormalTok{,}
+         \StringTok{"row"}\NormalTok{ =}\StringTok{ "rname[[i]]"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{high_df =}\StringTok{ }\NormalTok{union_df }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{filter}\NormalTok{(value }\OperatorTok{>=}\StringTok{ }\FloatTok{0.7}\NormalTok{,}
+\NormalTok{         value }\OperatorTok{!=}\StringTok{ }\DecValTok{1}\NormalTok{,}
+\NormalTok{         i }\OperatorTok{<}\StringTok{ }\NormalTok{j)}
+
+\NormalTok{high_df}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 21 x 5
+##        i     j row            column        value
+##    <int> <int> <chr>          <chr>         <dbl>
+##  1     3     4 t_covid_110820 t_pop         0.941
+##  2     5    17 p_educated     mhv           0.751
+##  3     5    40 p_educated     p_married     0.721
+##  4     8     9 p_not_white    p_black       0.800
+##  5     8    10 p_not_white    p_hispanic    0.729
+##  6     8    39 p_not_white    p_other_rel   0.798
+##  7     8    41 p_not_white    p_foreign     0.781
+##  8     8    42 p_not_white    p_non_english 0.708
+##  9     8    46 p_not_white    p_hs_dropout  0.728
+## 10    10    13 p_hispanic     p_essential   0.721
+## # ... with 11 more rows
+\end{verbatim}
+
+There is high correlation (Pearson's R-squared \textgreater{} 0.7) in 21
+pairs of variables.
+
+The percentage of non-white residents is highly correlated with 6 other
+variables, including the percent of residents who are black, hispanic,
+other religion, foreign born, non-English speaking and who did not
+graduate high school.
+
+The percentage of hispanic residents is highly correlated with 3
+variables: the percent of residents who are essential workers, who have
+no health insurance, and who did not graduate high school.
+
+The percentage of residents who did not graduate high school is highly
+correlated with 7 variables: the percent of residents who are hispanic,
+who are essential workers, who are on SNAP, who have no health
+insurance, who earn less than the poverty level, who are other religion,
+and who are non-white.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{very_high_df =}\StringTok{ }\NormalTok{union_df }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{filter}\NormalTok{(value }\OperatorTok{>=}\StringTok{ }\FloatTok{0.8}\NormalTok{,}
+\NormalTok{         value }\OperatorTok{!=}\StringTok{ }\DecValTok{1}\NormalTok{,}
+\NormalTok{         i }\OperatorTok{<}\StringTok{ }\NormalTok{j)}
+\NormalTok{very_high_df}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 6 x 5
+##       i     j row            column            value
+##   <int> <int> <chr>          <chr>             <dbl>
+## 1     3     4 t_covid_110820 t_pop             0.941
+## 2     8     9 p_not_white    p_black           0.800
+## 3    10    46 p_hispanic     p_hs_dropout      0.833
+## 4    19    36 p_children     p_familywith_kids 0.826
+## 5    33    34 p_poverty      p_poverty_kids    0.871
+## 6    41    42 p_foreign      p_non_english     0.945
+\end{verbatim}
+
+Furthermore, there were 6 pairs of variables with Pearson R-squared
+values above 0.8 including: (1) the total population and total cases of
+COVID-19 (Pearson R-squared 0.9408366), (2) the percent of non-white
+residents and the percent of Black residents (Pearson R-squared
+0.8002621), (3) the percent of children and percent of family with kids
+(Pearson R-squared 0.8330885), (4) the percent of poverty and the
+percent of children in poverty (Pearson R-squared 0.8259107), (5) the
+percent of foreign born residents and the percent of non-English
+speaking residents (Pearson R-squared 0.8713959), and (6) the percent of
+residents who did not graduate high school and the percent who are
+hispanic (Pearson R-squared 0.9448628).
+
+\hypertarget{prcomp}{%
+\section{prcomp}\label{prcomp}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pca =}\StringTok{ }\KeywordTok{prcomp}\NormalTok{(data[,}\OperatorTok{-}\DecValTok{1}\NormalTok{])}
+\KeywordTok{fviz_eig}\NormalTok{(pca)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics[width=0.9\linewidth]{20201227-millRiver_covidStudy_jsg2145_files/figure-latex/unnamed-chunk-18-1}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+  \CommentTok{# ?screeplot}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{a =}\StringTok{ }\KeywordTok{fviz_contrib}\NormalTok{(pca, }\DataTypeTok{choice =} \StringTok{"var"}\NormalTok{, }\DataTypeTok{axes =} \DecValTok{1}\NormalTok{) }
+\NormalTok{b =}\StringTok{ }\KeywordTok{fviz_contrib}\NormalTok{(pca, }\DataTypeTok{choice =} \StringTok{"var"}\NormalTok{, }\DataTypeTok{axes =} \DecValTok{2}\NormalTok{) }
+\KeywordTok{grid.arrange}\NormalTok{(a, b, }\DataTypeTok{nrow =} \DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics[width=0.9\linewidth]{20201227-millRiver_covidStudy_jsg2145_files/figure-latex/unnamed-chunk-19-1}
+
+The PCA isn't working because of the size of the mhv and mhi variables.
+A centered scaled dataset is needed.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pca1 =}\StringTok{ }\KeywordTok{prcomp}\NormalTok{(data[,}\OperatorTok{-}\DecValTok{1}\NormalTok{], }\DataTypeTok{scale =} \OtherTok{TRUE}\NormalTok{)}
+\KeywordTok{fviz_eig}\NormalTok{(pca1)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics[width=0.9\linewidth]{20201227-millRiver_covidStudy_jsg2145_files/figure-latex/unnamed-chunk-20-1}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{a =}\StringTok{ }\KeywordTok{fviz_contrib}\NormalTok{(pca1, }\DataTypeTok{choice =} \StringTok{"var"}\NormalTok{, }\DataTypeTok{axes =} \DecValTok{1}\NormalTok{) }
+\NormalTok{b =}\StringTok{ }\KeywordTok{fviz_contrib}\NormalTok{(pca1, }\DataTypeTok{choice =} \StringTok{"var"}\NormalTok{, }\DataTypeTok{axes =} \DecValTok{2}\NormalTok{) }
+\KeywordTok{grid.arrange}\NormalTok{(a, b, }\DataTypeTok{nrow =} \DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics[width=0.9\linewidth]{20201227-millRiver_covidStudy_jsg2145_files/figure-latex/unnamed-chunk-21-1}
+
+\hypertarget{part-2}{%
+\section{Part 2}\label{part-2}}
+
+\hypertarget{read-in-data-1}{%
+\subsection{read in data}\label{read-in-data-1}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cs_data =}\StringTok{ }\NormalTok{readxl}\OperatorTok{::}\KeywordTok{read_excel}\NormalTok{(}\StringTok{"./data/CR_Index_Jared_12_22_20.xlsx"}\NormalTok{, }\DataTypeTok{sheet =} \StringTok{"Score"}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\NormalTok{janitor}\OperatorTok{::}\KeywordTok{clean_names}\NormalTok{()}
+
+\NormalTok{skimr}\OperatorTok{::}\KeywordTok{skim}\NormalTok{(cs_data)}
+\end{Highlighting}
+\end{Shaded}
+
+There is no missing data.
+
+\hypertarget{check-a-correlation-analysis}{%
+\subsection{check a correlation
+analysis}\label{check-a-correlation-analysis}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cs_matrify =}\StringTok{ }\ControlFlowTok{function}\NormalTok{(}\DataTypeTok{pdata =}\NormalTok{ cs_output) \{}
+\NormalTok{  result =}\StringTok{ }\KeywordTok{vector}\NormalTok{(}\DataTypeTok{mode =} \StringTok{"list"}\NormalTok{, }\DataTypeTok{length =} \DecValTok{35}\NormalTok{)}
+  \ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\DecValTok{35}\NormalTok{) \{}
+\NormalTok{      result[[i]] =}\StringTok{ }\KeywordTok{tibble}\NormalTok{(pdata[[i]])}
+\NormalTok{  \}}
+\NormalTok{  result =}\StringTok{ }\KeywordTok{bind_rows}\NormalTok{(result)}
+  \KeywordTok{return}\NormalTok{(result)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{M2 =}\StringTok{ }\KeywordTok{cor}\NormalTok{(cs_data[,}\OperatorTok{-}\DecValTok{1}\NormalTok{])}
+
+\CommentTok{# length(M2)}
+\CommentTok{# ncol(M2)}
+\CommentTok{# length(cs_output)}
+
+\NormalTok{cs_output =}\StringTok{ }\KeywordTok{vector}\NormalTok{(}\DataTypeTok{mode =} \StringTok{"list"}\NormalTok{, }\DataTypeTok{length =} \KeywordTok{length}\NormalTok{(M2))}
+\NormalTok{rname =}\StringTok{ }\OtherTok{NULL}
+\NormalTok{cname =}\StringTok{ }\OtherTok{NULL}
+\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\KeywordTok{nrow}\NormalTok{(M2)) \{}
+  \ControlFlowTok{for}\NormalTok{(j }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\KeywordTok{ncol}\NormalTok{(M2)) \{}
+\NormalTok{    rname[[i]] =}\StringTok{ }\KeywordTok{dimnames}\NormalTok{(M2)[[}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, i)]]}
+\NormalTok{    cname[[j]] =}\StringTok{ }\KeywordTok{dimnames}\NormalTok{(M2)[[}\KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{, j)]]}
+\NormalTok{    cs_output[[}\KeywordTok{c}\NormalTok{(i, j)]] =}\StringTok{ }\KeywordTok{tibble_row}\NormalTok{(i, j, rname[[i]], cname[[j]], M2[[i, j]])}
+\NormalTok{  \}}
+\NormalTok{\}}
+
+\CommentTok{# matrify = function(pdata = cs_output) \{}
+\CommentTok{#   for(i in 1:length(M2)) \{}
+\CommentTok{#       result[[i]] = tibble(pdata[[c(i, i)]])}
+\CommentTok{#   \}}
+\CommentTok{#   result = bind_rows(result)}
+\CommentTok{#   return(result)}
+\CommentTok{# \}}
+\CommentTok{# }
+\CommentTok{# matrify()}
+
+\CommentTok{# cs_output[[35]]}
+
+\NormalTok{cs_df =}\StringTok{ }\KeywordTok{vector}\NormalTok{(}\DataTypeTok{mode =} \StringTok{"list"}\NormalTok{, }\DataTypeTok{length =} \DecValTok{35}\NormalTok{)}
+\ControlFlowTok{for}\NormalTok{(j }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\DecValTok{35}\NormalTok{) \{}
+\NormalTok{  cs_df[[j]] =}\StringTok{ }\KeywordTok{cs_matrify}\NormalTok{(}\DataTypeTok{pdata =}\NormalTok{ cs_output[[j]])}
+\NormalTok{\}}
+
+\CommentTok{# head(cs_df)}
+
+\NormalTok{union_cs_df =}\StringTok{ }\KeywordTok{bind_rows}\NormalTok{(cs_df) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{rename}\NormalTok{(}\StringTok{"value"}\NormalTok{ =}\StringTok{ "M2[[i, j]]"}\NormalTok{,}
+         \StringTok{"column"}\NormalTok{ =}\StringTok{ "cname[[j]]"}\NormalTok{,}
+         \StringTok{"row"}\NormalTok{ =}\StringTok{ "rname[[i]]"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{high_df =}\StringTok{ }\NormalTok{union_cs_df }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{filter}\NormalTok{(value }\OperatorTok{>=}\StringTok{ }\FloatTok{0.7}\NormalTok{,}
+\NormalTok{         value }\OperatorTok{!=}\StringTok{ }\DecValTok{1}\NormalTok{,}
+\NormalTok{         i }\OperatorTok{<}\StringTok{ }\NormalTok{j)}
+
+\NormalTok{high_df}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 27 x 5
+##        i     j row      column               value
+##    <int> <int> <chr>    <chr>                <dbl>
+##  1     1     6 poverty  insured              0.770
+##  2     1     7 poverty  economic             0.756
+##  3     1     8 poverty  hs_drop_out_rates    0.802
+##  4     1    10 poverty  food_assistance      0.816
+##  5     1    17 poverty  social               0.759
+##  6     6     7 insured  economic             0.766
+##  7     6     8 insured  hs_drop_out_rates    0.787
+##  8     6     9 insured  non_white            0.737
+##  9     6    17 insured  social               0.765
+## 10     7    35 economic community_resilience 0.751
+## # ... with 17 more rows
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{very_high_df =}\StringTok{ }\NormalTok{union_cs_df }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{filter}\NormalTok{(value }\OperatorTok{>=}\StringTok{ }\FloatTok{0.8}\NormalTok{,}
+\NormalTok{         value }\OperatorTok{!=}\StringTok{ }\DecValTok{1}\NormalTok{,}
+\NormalTok{         i }\OperatorTok{<}\StringTok{ }\NormalTok{j)}
+\NormalTok{very_high_df}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 5 x 5
+##       i     j row               column            value
+##   <int> <int> <chr>             <chr>             <dbl>
+## 1     1     8 poverty           hs_drop_out_rates 0.802
+## 2     1    10 poverty           food_assistance   0.816
+## 3     8    17 hs_drop_out_rates social            0.837
+## 4    11    22 teen_pregnancy    asthma            0.821
+## 5    31    34 x100yr_flood      environmental     0.882
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# ?prcomp}
+\NormalTok{pca =}\StringTok{ }\KeywordTok{prcomp}\NormalTok{(cs_data[,}\OperatorTok{-}\DecValTok{1}\NormalTok{])}
+\KeywordTok{fviz_eig}\NormalTok{(pca)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics[width=0.9\linewidth]{20201227-millRiver_covidStudy_jsg2145_files/figure-latex/unnamed-chunk-26-1}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# ?fviz_eig}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{a =}\StringTok{ }\KeywordTok{fviz_contrib}\NormalTok{(pca, }\DataTypeTok{choice =} \StringTok{"var"}\NormalTok{, }\DataTypeTok{axes =} \DecValTok{1}\NormalTok{) }
+\NormalTok{b =}\StringTok{ }\KeywordTok{fviz_contrib}\NormalTok{(pca, }\DataTypeTok{choice =} \StringTok{"var"}\NormalTok{, }\DataTypeTok{axes =} \DecValTok{2}\NormalTok{) }
+\NormalTok{c =}\StringTok{ }\KeywordTok{fviz_contrib}\NormalTok{(pca, }\DataTypeTok{choice =} \StringTok{"var"}\NormalTok{, }\DataTypeTok{axes =} \DecValTok{3}\NormalTok{) }
+\KeywordTok{grid.arrange}\NormalTok{(a, b, c, }\DataTypeTok{nrow =} \DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics[width=0.9\linewidth]{20201227-millRiver_covidStudy_jsg2145_files/figure-latex/unnamed-chunk-27-1}
+
+\hypertarget{center-and-scale-confirm-data---pca}{%
+\section{Center and Scale (confirm data) -
+PCA}\label{center-and-scale-confirm-data---pca}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{centered_x =}\StringTok{ }\KeywordTok{scale}\NormalTok{(data[,}\OperatorTok{-}\DecValTok{1}\NormalTok{])}
+\KeywordTok{rownames}\NormalTok{(centered_x) =}\StringTok{ }\NormalTok{data}\OperatorTok{$}\NormalTok{geographic_area_name}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# cs_matrify = function(pdata = cs_output) \{}
+\CommentTok{#   result = vector(mode = "list", length = 35)}
+\CommentTok{#   for(i in 1:35) \{}
+\CommentTok{#       result[[i]] = tibble(pdata[[i]])}
+\CommentTok{#   \}}
+\CommentTok{#   result = bind_rows(result)}
+\CommentTok{#   return(result)}
+\CommentTok{# \}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{centered_M =}\StringTok{ }\KeywordTok{cor}\NormalTok{(centered_x)}
+\NormalTok{centered_output =}\StringTok{ }\KeywordTok{vector}\NormalTok{(}\DataTypeTok{mode =} \StringTok{"list"}\NormalTok{, }\DataTypeTok{length =} \KeywordTok{length}\NormalTok{(centered_M))}
+\NormalTok{rname =}\StringTok{ }\OtherTok{NULL}
+\NormalTok{cname =}\StringTok{ }\OtherTok{NULL}
+\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\KeywordTok{nrow}\NormalTok{(centered_M)) \{}
+  \ControlFlowTok{for}\NormalTok{(j }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\KeywordTok{ncol}\NormalTok{(centered_M)) \{}
+\NormalTok{    rname[[i]] =}\StringTok{ }\KeywordTok{dimnames}\NormalTok{(centered_M)[[}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, i)]]}
+\NormalTok{    cname[[j]] =}\StringTok{ }\KeywordTok{dimnames}\NormalTok{(centered_M)[[}\KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{, j)]]}
+\NormalTok{    centered_output[[}\KeywordTok{c}\NormalTok{(i, j)]] =}\StringTok{ }\KeywordTok{tibble_row}\NormalTok{(i, j, rname[[i]], cname[[j]], centered_M[[i, j]])}
+\NormalTok{  \}}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{centered_df =}\StringTok{ }\KeywordTok{vector}\NormalTok{(}\DataTypeTok{mode =} \StringTok{"list"}\NormalTok{, }\DataTypeTok{length =} \DecValTok{35}\NormalTok{)}
+\ControlFlowTok{for}\NormalTok{(j }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\DecValTok{35}\NormalTok{) \{}
+\NormalTok{  centered_df[[j]] =}\StringTok{ }\KeywordTok{cs_matrify}\NormalTok{(}\DataTypeTok{pdata =}\NormalTok{ centered_output[[j]])}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{union_centered_df =}\StringTok{ }\KeywordTok{bind_rows}\NormalTok{(centered_df) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{rename}\NormalTok{(}\StringTok{"value"}\NormalTok{ =}\StringTok{ "centered_M[[i, j]]"}\NormalTok{,}
+         \StringTok{"column"}\NormalTok{ =}\StringTok{ "cname[[j]]"}\NormalTok{,}
+         \StringTok{"row"}\NormalTok{ =}\StringTok{ "rname[[i]]"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{high_df =}\StringTok{ }\NormalTok{union_centered_df }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{filter}\NormalTok{(value }\OperatorTok{>=}\StringTok{ }\FloatTok{0.7}\NormalTok{,}
+\NormalTok{         value }\OperatorTok{!=}\StringTok{ }\DecValTok{1}\NormalTok{,}
+\NormalTok{         i }\OperatorTok{<}\StringTok{ }\NormalTok{j)}
+
+\NormalTok{high_df}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 8 x 5
+##       i     j row            column          value
+##   <int> <int> <chr>          <chr>           <dbl>
+## 1     3     4 t_covid_110820 t_pop           0.941
+## 2     5    17 p_educated     mhv             0.751
+## 3     8     9 p_not_white    p_black         0.800
+## 4     8    10 p_not_white    p_hispanic      0.729
+## 5    10    13 p_hispanic     p_essential     0.721
+## 6    10    32 p_hispanic     p_no_health_ins 0.718
+## 7    21    33 p_renter       p_poverty       0.718
+## 8    33    34 p_poverty      p_poverty_kids  0.871
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{very_high_df =}\StringTok{ }\NormalTok{union_centered_df }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{filter}\NormalTok{(value }\OperatorTok{>=}\StringTok{ }\FloatTok{0.8}\NormalTok{,}
+\NormalTok{         value }\OperatorTok{!=}\StringTok{ }\DecValTok{1}\NormalTok{,}
+\NormalTok{         i }\OperatorTok{<}\StringTok{ }\NormalTok{j)}
+\NormalTok{very_high_df}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 3 x 5
+##       i     j row            column         value
+##   <int> <int> <chr>          <chr>          <dbl>
+## 1     3     4 t_covid_110820 t_pop          0.941
+## 2     8     9 p_not_white    p_black        0.800
+## 3    33    34 p_poverty      p_poverty_kids 0.871
+\end{verbatim}
+
+There are fewer highly correlated variables using the method of
+``scale'' in R than the dataset provided.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pca2 =}\StringTok{ }\KeywordTok{prcomp}\NormalTok{(centered_x)}
+\KeywordTok{fviz_eig}\NormalTok{(pca2)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics[width=0.9\linewidth]{20201227-millRiver_covidStudy_jsg2145_files/figure-latex/unnamed-chunk-34-1}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{biplot}\NormalTok{(pca2)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics[width=0.9\linewidth]{20201227-millRiver_covidStudy_jsg2145_files/figure-latex/unnamed-chunk-34-2}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{a =}\StringTok{ }\KeywordTok{fviz_contrib}\NormalTok{(pca, }\DataTypeTok{choice =} \StringTok{"var"}\NormalTok{, }\DataTypeTok{axes =} \DecValTok{1}\NormalTok{) }
+\NormalTok{b =}\StringTok{ }\KeywordTok{fviz_contrib}\NormalTok{(pca, }\DataTypeTok{choice =} \StringTok{"var"}\NormalTok{, }\DataTypeTok{axes =} \DecValTok{2}\NormalTok{) }
+\KeywordTok{grid.arrange}\NormalTok{(a, b, }\DataTypeTok{nrow =} \DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics[width=0.9\linewidth]{20201227-millRiver_covidStudy_jsg2145_files/figure-latex/unnamed-chunk-35-1}
+
+These results are similar to those using the option ``scale'' in the
+``prcomp'' function as earlier. This makes sense, since the option
+``scale'' sends the data to the ``scale'' function.
+
+\hypertarget{psych-package}{%
+\subsection{psych package}\label{psych-package}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# ?principal}
+\NormalTok{fit =}\StringTok{ }\KeywordTok{principal}\NormalTok{(M2, }\DataTypeTok{nfactors =} \DecValTok{4}\NormalTok{, }\DataTypeTok{rotate =} \StringTok{"promax"}\NormalTok{)}
+\NormalTok{fit}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Principal Components Analysis
+## Call: principal(r = M2, nfactors = 4, rotate = "promax")
+## Standardized loadings (pattern matrix) based upon correlation matrix
+##                        RC1   RC2   RC3   RC4    h2    u2 com
+## poverty               0.80  0.02  0.30  0.10 0.767 0.233 1.3
+## employment            0.13  0.04  0.63 -0.09 0.470 0.530 1.1
+## income                0.26  0.15  0.42 -0.56 0.802 0.198 2.5
+## car                   0.16  0.36  0.10  0.77 0.556 0.444 1.5
+## no_internet           0.12  0.11  0.09  0.75 0.491 0.509 1.1
+## insured               0.81 -0.02  0.33  0.06 0.822 0.178 1.3
+## economic              0.68  0.23  0.55  0.34 0.906 0.094 2.7
+## hs_drop_out_rates     0.77 -0.19  0.36 -0.06 0.826 0.174 1.6
+## non_white             0.69 -0.46  0.22 -0.10 0.724 0.276 2.0
+## food_assistance       0.71  0.25  0.25  0.06 0.725 0.275 1.5
+## teen_pregnancy        0.83 -0.08  0.07  0.03 0.693 0.307 1.0
+## lim_english           0.56 -0.57  0.02  0.04 0.561 0.439 2.0
+## crime                 0.72 -0.26 -0.08 -0.31 0.745 0.255 1.7
+## adr                  -0.18 -0.07 -0.71  0.05 0.607 0.393 1.2
+## first_responders      0.23 -0.18 -0.32  0.55 0.447 0.553 2.2
+## health_workers_ratio -0.05  0.55  0.16 -0.27 0.492 0.508 1.7
+## social                0.95 -0.25  0.02 -0.01 0.924 0.076 1.1
+## lead                 -0.09  0.45 -0.11 -0.13 0.234 0.766 1.4
+## life_expectancy       0.27  0.44 -0.01 -0.34 0.550 0.450 2.6
+## child_obesity         0.45  0.35 -0.52 -0.24 0.668 0.332 3.2
+## covid                 0.74  0.21 -0.38  0.12 0.599 0.401 1.7
+## asthma                0.85  0.18  0.00  0.13 0.720 0.280 1.1
+## opiod                 0.15  0.65  0.09 -0.18 0.604 0.396 1.3
+## infant_mortality      0.02  0.02  0.16 -0.07 0.037 0.963 1.5
+## cancer               -0.07  0.06 -0.64 -0.11 0.423 0.577 1.1
+## over65               -0.33  0.13 -0.29 -0.03 0.217 0.783 2.3
+## disability           -0.19  0.44  0.46 -0.10 0.473 0.527 2.4
+## health                0.47  0.64 -0.28 -0.20 0.851 0.149 2.5
+## coastal_erosion      -0.18  0.43  0.15  0.09 0.227 0.773 1.7
+## wave_action          -0.03  0.58  0.18  0.41 0.446 0.554 2.0
+## x100yr_flood         -0.05  0.90  0.17  0.26 0.830 0.170 1.3
+## storm_surge          -0.11  0.89 -0.24  0.22 0.769 0.231 1.3
+## impervious            0.09 -0.09  0.38 -0.55 0.491 0.509 1.9
+## environmental        -0.09  0.90  0.13  0.10 0.815 0.185 1.1
+## community_resilience  0.66  0.64  0.16  0.10 0.964 0.036 2.2
+## 
+##                        RC1  RC2  RC3  RC4
+## SS loadings           8.59 6.22 3.82 2.84
+## Proportion Var        0.25 0.18 0.11 0.08
+## Cumulative Var        0.25 0.42 0.53 0.61
+## Proportion Explained  0.40 0.29 0.18 0.13
+## Cumulative Proportion 0.40 0.69 0.87 1.00
+## 
+##  With component correlations of 
+##       RC1   RC2   RC3   RC4
+## RC1  1.00  0.12  0.17 -0.35
+## RC2  0.12  1.00  0.14 -0.24
+## RC3  0.17  0.14  1.00 -0.04
+## RC4 -0.35 -0.24 -0.04  1.00
+## 
+## Mean item complexity =  1.7
+## Test of the hypothesis that 4 components are sufficient.
+## 
+## The root mean square of the residuals (RMSR) is  0.09 
+## 
+## Fit based upon off diagonal values = 0.94
+\end{verbatim}
+
+\hypertarget{iclust-in-psych}{%
+\subsubsection{iclust in psych}\label{iclust-in-psych}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# ?iclust}
+\CommentTok{# pdf()}
+\NormalTok{fit2 =}\StringTok{ }\KeywordTok{iclust}\NormalTok{(M2, }\DataTypeTok{plot =} \OtherTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics[width=0.9\linewidth]{20201227-millRiver_covidStudy_jsg2145_files/figure-latex/unnamed-chunk-37-1}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# dev.off()}
+\NormalTok{fit2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## ICLUST (Item Cluster Analysis)
+## Call: iclust(r.mat = M2, plot = TRUE)
+## 
+## Purified Alpha:
+##  C30  C31   C1  V24 
+## 0.93 0.87 0.60 1.00 
+## 
+## G6* reliability:
+##  C30  C31   C1  V24 
+## 0.96 0.96 1.00 1.00 
+## 
+## Original Beta:
+##  C30  C31   C1  V24 
+## 0.55 0.49 0.60   NA 
+## 
+## Cluster size:
+## C30 C31  C1 V24 
+##  15  17   2   1 
+## 
+## Item by Cluster Structure matrix:
+##                        O   P   C30   C31    C1   V24
+## poverty              C30 C30  0.86  0.37 -0.07  0.07
+## employment           C31 C31  0.38  0.40 -0.04 -0.07
+## income               C31 C31  0.56  0.69 -0.40  0.30
+## car                   C1  C1 -0.06  0.08  0.77 -0.06
+## no_internet           C1  C1 -0.07 -0.12  0.75  0.04
+## insured              C30 C30  0.90  0.39 -0.02  0.21
+## economic             C30 C30  0.70  0.56  0.46  0.16
+## hs_drop_out_rates    C30 C30  0.88  0.28 -0.20  0.07
+## non_white            C30 C30  0.73 -0.01 -0.18  0.18
+## food_assistance      C30 C30  0.78  0.55 -0.06  0.05
+## teen_pregnancy       C30 C30  0.82  0.19 -0.02  0.20
+## lim_english          C30 C30  0.48 -0.30 -0.11  0.02
+## crime                C30 C30  0.75  0.08 -0.35  0.10
+## adr                  C30 C30 -0.50 -0.45 -0.02 -0.28
+## first_responders     C31 C31 -0.10 -0.44  0.15 -0.35
+## health_workers_ratio C31 C31  0.17  0.63  0.03 -0.07
+## social               C30 C30  0.88  0.12 -0.17 -0.01
+## lead                 C31 C31 -0.07  0.37 -0.04  0.04
+## life_expectancy      C31 C31  0.37  0.63 -0.18  0.16
+## child_obesity        C30 C30  0.40  0.29 -0.36 -0.03
+## covid                C30 C30  0.57  0.23 -0.09 -0.04
+## asthma               C30 C30  0.79  0.37  0.14  0.02
+## opiod                C31 C31  0.25  0.76  0.05  0.05
+## infant_mortality     V24 V24  0.10  0.12 -0.01  0.73
+## cancer               C31 C31 -0.24 -0.24 -0.04 -0.10
+## over65               C30 C30 -0.49 -0.05 -0.11 -0.22
+## disability           C31 C31 -0.01  0.64 -0.06 -0.07
+## health               C31 C31  0.45  0.61 -0.15  0.34
+## coastal_erosion      C31 C31 -0.09  0.35  0.07  0.19
+## wave_action          C31 C31 -0.04  0.45  0.24  0.26
+## x100yr_flood         C31 C31  0.00  0.79  0.31  0.16
+## storm_surge          C31 C31 -0.18  0.55  0.14 -0.20
+## impervious           C31 C31  0.38  0.39 -0.33 -0.14
+## environmental        C31 C31  0.01  0.73  0.11 -0.01
+## community_resilience C31 C31  0.71  0.76  0.10  0.16
+## 
+## With eigenvalues of:
+## C30 C31  C1 V24 
+## 8.8 6.5 2.3 1.2 
+## 
+## Purified scale intercorrelations
+##  reliabilities on diagonal
+##  correlations corrected for attenuation above diagonal: 
+##       C30   C31    C1   V24
+## C30  0.93  0.37 -0.10  0.11
+## C31  0.33  0.87 -0.03  0.12
+## C1  -0.08 -0.02  0.60 -0.01
+## V24  0.10  0.12 -0.01  1.00
+## 
+## Cluster fit =  0.66   Pattern fit =  0.92  RMSR =  0.11
+\end{verbatim}
+
+\hypertarget{clustering}{%
+\section{Clustering}\label{clustering}}
+
+Further methods in unsupervised learning
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{fviz_nbclust}\NormalTok{(centered_x,}
+             \DataTypeTok{FUNcluster =}\NormalTok{ kmeans,}
+             \DataTypeTok{method =} \StringTok{"silhouette"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics[width=0.9\linewidth]{20201227-millRiver_covidStudy_jsg2145_files/figure-latex/unnamed-chunk-38-1}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{set.seed}\NormalTok{(}\DecValTok{719}\NormalTok{)}
+\NormalTok{km <-}\StringTok{ }\KeywordTok{kmeans}\NormalTok{(centered_x, }\DataTypeTok{centers =} \DecValTok{3}\NormalTok{)}
+\CommentTok{# km2 <- kmeans(data[,-1], centers = 4)}
+\CommentTok{# ?kmeans}
+\CommentTok{# km2$cluster}
+\CommentTok{# dimnames(km$cluster)[[2]]}
+\CommentTok{# length(km$cluster)}
+\CommentTok{# km$centers[[129]]}
+\CommentTok{# str(km)}
+\CommentTok{# km}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{output2 =}\StringTok{ }\OtherTok{NULL}
+\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\KeywordTok{length}\NormalTok{(km}\OperatorTok{$}\NormalTok{cluster)) \{}
+\NormalTok{  output2[[i]] =}\StringTok{ }\KeywordTok{tibble}\NormalTok{(km}\OperatorTok{$}\NormalTok{cluster[[i]])}
+\NormalTok{\}}
+
+\NormalTok{output2_df =}\StringTok{ }\KeywordTok{bind_rows}\NormalTok{(output2) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{rename}\NormalTok{(}\StringTok{"cluster"}\NormalTok{ =}\StringTok{ "km$cluster[[i]]"}\NormalTok{)}
+
+\CommentTok{# str(output2_df)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{data }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{add_column}\NormalTok{(}\DataTypeTok{cluster =} \KeywordTok{pull}\NormalTok{(output2_df, cluster)) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{select}\NormalTok{(cluster, geographic_area_name) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{arrange}\NormalTok{(cluster)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 129 x 2
+##    cluster geographic_area_name  
+##      <int> <chr>                 
+##  1       1 Albertson CDP         
+##  2       1 Atlantic Beach village
+##  3       1 Baldwin Harbor CDP    
+##  4       1 Barnum Island CDP     
+##  5       1 Baxter Estates village
+##  6       1 Bay Park CDP          
+##  7       1 Bayville village      
+##  8       1 Bellerose Terrace CDP 
+##  9       1 Bellerose village     
+## 10       1 Bellmore CDP          
+## # ... with 119 more rows
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# ?fviz_cluster}
+\NormalTok{km_vis <-}\StringTok{ }\KeywordTok{fviz_cluster}\NormalTok{(}\KeywordTok{list}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ centered_x, }\DataTypeTok{cluster =}\NormalTok{ km}\OperatorTok{$}\NormalTok{cluster),}
+                       \DataTypeTok{ellipse.type =} \StringTok{"convex"}\NormalTok{, }
+                       \DataTypeTok{geom =} \KeywordTok{c}\NormalTok{(}\StringTok{"point"}\NormalTok{,}\StringTok{"text"}\NormalTok{),}
+                       \DataTypeTok{labelsize =} \DecValTok{10}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title =} \StringTok{"K-means"}\NormalTok{) }
+
+\NormalTok{km_vis}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics[width=0.9\linewidth]{20201227-millRiver_covidStudy_jsg2145_files/figure-latex/unnamed-chunk-42-1}
+
+\hypertarget{hierarchical-clustering}{%
+\section{Hierarchical Clustering}\label{hierarchical-clustering}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{hc.complete <-}\StringTok{ }\KeywordTok{hclust}\NormalTok{(}\KeywordTok{dist}\NormalTok{(centered_x), }\DataTypeTok{method =} \StringTok{"complete"}\NormalTok{)}
+
+\KeywordTok{fviz_dend}\NormalTok{(hc.complete, }\DataTypeTok{k =} \DecValTok{3}\NormalTok{,        }
+          \DataTypeTok{cex =} \FloatTok{0.5}\NormalTok{, }
+          \DataTypeTok{palette =} \StringTok{"jco"}\NormalTok{, }
+          \DataTypeTok{color_labels_by_k =} \OtherTok{TRUE}\NormalTok{,}
+          \DataTypeTok{rect =} \OtherTok{TRUE}\NormalTok{, }\DataTypeTok{rect_fill =} \OtherTok{TRUE}\NormalTok{, }\DataTypeTok{rect_border =} \StringTok{"jco"}\NormalTok{,}
+          \DataTypeTok{labels_track_height =} \FloatTok{2.5}\NormalTok{)}
+
+\CommentTok{# ?fviz_dend}
+
+\NormalTok{ind4.complete <-}\StringTok{ }\KeywordTok{cutree}\NormalTok{(hc.complete, }\DecValTok{3}\NormalTok{)}
+\CommentTok{# str(ind4.complete)}
+\CommentTok{# names(ind4.complete)}
+\CommentTok{# }
+\CommentTok{# # Who are in the fourth cluster?}
+\CommentTok{# ind4.complete %>% }
+\CommentTok{#   filter()}
+\end{Highlighting}
+\end{Shaded}
+
+\end{document}

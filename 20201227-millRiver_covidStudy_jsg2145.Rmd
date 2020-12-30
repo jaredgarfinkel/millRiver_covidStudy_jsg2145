@@ -17,8 +17,8 @@ knitr::opts_chunk$set(
 	echo = TRUE,
 	warning = FALSE,
 	message = FALSE,
-	fig.width = 8, 
-  fig.height = 6,
+	fig.width = 12, 
+  fig.height = 14,
   out.width = "90%"
 )
 options(
@@ -565,5 +565,85 @@ km_vis <- fviz_cluster(list(data = centered_x, cluster = km$cluster),
 km_vis
 ```
 
+# Hierarchical Clustering
+
+```{r}
+hc.complete <- hclust(dist(centered_x), method = "complete")
+
+fviz_dend(hc.complete, k = 3,        
+          cex = 0.5, 
+          palette = "jco", 
+          color_labels_by_k = TRUE,
+          rect = TRUE, rect_fill = TRUE, rect_border = "jco",
+          labels_track_height = 2.5)
+
+# ?fviz_dend
+
+ind4.complete <- cutree(hc.complete, 3)
+# str(ind4.complete)
+# names(ind4.complete)
+# 
+# # Who are in the fourth cluster?
+# ind4.complete %>% 
+#   filter()
+```
+
+
+```{r}
+hc.average <- hclust(dist(centered_x), method = "average")
+
+fviz_dend(hc.average, k = 3,        
+          cex = 0.5, 
+          palette = "jco", 
+          color_labels_by_k = TRUE,
+          rect = TRUE, rect_fill = TRUE, rect_border = "jco",
+          labels_track_height = 2.5)
+
+# ?fviz_dend
+
+ind4.complete <- cutree(hc.complete, 3)
+
+# Who are in the fourth cluster?
+# dat[ind4.complete == 3,]
+```
+
+
+```{r}
+hc.single <- hclust(dist(data[,-1]), method = "single")
+
+fviz_dend(hc.single, k = 3,        
+          cex = 0.5, 
+          palette = "jco", 
+          color_labels_by_k = TRUE,
+          rect = TRUE, rect_fill = TRUE, rect_border = "jco",
+          labels_track_height = 2.5)
+
+# ?fviz_dend
+
+ind4.complete <- cutree(hc.complete, 3)
+
+# Who are in the fourth cluster?
+# dat[ind4.complete == 3,]
+```
+
+
+```{r}
+hc.centroid <- hclust(dist(data[,-1]), method = "centroid")
+
+fviz_dend(hc.centroid, k = 3,        
+          cex = 0.5, 
+          palette = "jco", 
+          color_labels_by_k = TRUE,
+          rect = TRUE, rect_fill = TRUE, rect_border = "jco",
+          labels_track_height = 2.5)
+
+# ?fviz_dend
+
+ind4.complete <- cutree(hc.complete, 3)
+
+# Who are in the fourth cluster?
+# dat[ind4.complete == 3,]
+
+```
 
 
