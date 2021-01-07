@@ -1,0 +1,92 @@
+---
+title: "20200107-millRiver_covidStudy_jsg2145"
+author: "Jared Garfinkel"
+date: "1/7/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(viridis)
+library(readxl)
+library(corrplot)
+library(factoextra)
+library(gridExtra)
+library(psych)
+knitr::opts_chunk$set(
+	echo = TRUE,
+	warning = FALSE,
+	message = FALSE,
+	fig.width = 6, 
+  fig.height = 8,
+  out.width = "90%"
+)
+options(
+  ggplot2.continuous.colour = "viridis",
+  ggplot2.continuous.fill = "viridis"
+)
+scale_colour_discrete = scale_colour_viridis_d
+scale_fill_discrete = scale_fill_viridis_d
+theme_set(theme_minimal() + theme(legend.position = "bottom"))
+```
+
+# Part 1
+
+## Read in data
+
+## Keep the outcome (cases) separate
+
+```{r}
+cases = readxl::read_excel("./data/NassauCountyCOVID.xlsx") %>% 
+  janitor::clean_names() %>% 
+  select(namelsad, pos_12102020)
+
+cases
+```
+
+```{r}
+df = readxl::read_excel("./data/DianaData_11_25_20.xlsx") %>% 
+  janitor::clean_names()
+
+# observe dataframe
+
+skimr::skim(df)
+
+# missing data in "median rooms", "mhv", and "mhi"
+
+df %>% 
+  filter(is.na(mhi))
+```
+
+## merge datasets
+
+```{r}
+data = left_join(df, cases, by = c("geographic_area_name" = "namelsad")) %>% 
+  select(geographic_area_name, pos_12102020, everything())
+```
+
+## conduct linear regression
+
+```{r}
+fit = glm(pos_12102020 ~ ., data = data[,-1], family = poisson(link = "log"))
+summary(fit)
+```
+
+## test for goodness of fit
+
+```{r}
+sum(residuals(fit,type='pearson')^2) # pearson chisq
+dev=sum(residuals(fit,type='deviance')^2)
+dev # deviance
+# compare with chisq(112)
+pval=1-pchisq(dev,112)
+pval # fit is not good
+```
+
+## plot goodness of fit diagnostics
+
+```{r}
+plot(fit)
+```
+
+
