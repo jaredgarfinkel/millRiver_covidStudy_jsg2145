@@ -9,10 +9,6 @@ output: html_document
 library(tidyverse)
 library(viridis)
 library(readxl)
-library(corrplot)
-library(factoextra)
-library(gridExtra)
-library(psych)
 knitr::opts_chunk$set(
 	echo = TRUE,
 	warning = FALSE,
