@@ -30,8 +30,6 @@ theme_set(theme_minimal() + theme(legend.position = "bottom"))
 
 ## Read in data
 
-## Keep the outcome (cases) separate
-
 ```{r}
 cases = readxl::read_excel("./data/NassauCountyCOVID.xlsx") %>% 
   janitor::clean_names() %>% 
@@ -46,12 +44,12 @@ df = readxl::read_excel("./data/DianaData_11_25_20.xlsx") %>%
 
 # observe dataframe
 
-skimr::skim(df)
+# skimr::skim(df)
 
 # missing data in "median rooms", "mhv", and "mhi"
 
-df %>% 
-  filter(is.na(mhi))
+# df %>%
+# filter(is.na(mhi))
 ```
 
 ## merge datasets
@@ -59,7 +57,270 @@ df %>%
 ```{r}
 data = left_join(df, cases, by = c("geographic_area_name" = "namelsad")) %>% 
   select(geographic_area_name, pos_12102020, everything())
+# data
 ```
+
+## exploratory data analysis
+
+```{r, include = FALSE, eval = FALSE}
+# ncol(data)
+data[2]
+pull(data, 2)
+output = NULL
+for(i in 2:ncol(data)) {
+  output[[i]] = data %>%  
+    ggplot(aes(x = pull(data, i))) +
+    geom_boxplot()
+}
+output
+```
+
+
+```{r, fig.height = 12, fig.width = 14}
+box_df = data %>% 
+  pivot_longer(cols = 2:ncol(.)) %>% 
+  # mutate(name = factor(name)) %>% 
+  group_by(name) %>% 
+  mutate(mean = mean(value)) %>% 
+         # mean = factor(mean)) %>%
+  filter(!is.na(mean)) %>% 
+  ungroup() %>%
+  group_by(geographic_area_name) %>% 
+  arrange(desc(mean)) %>% 
+  slice_head(mean, n = 1)
+# box_df
+```
+
+```{r}
+box_df %>%
+  # group_by(name) %>% 
+  ggplot(aes(x = name, y = value, group = name)) +
+  geom_boxplot() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+```
+
+```{r works}
+box_df2 = data %>% 
+  pivot_longer(cols = 2:ncol(.)) %>% 
+  # mutate(name = factor(name)) %>% 
+  group_by(name) %>% 
+  mutate(mean = mean(value)) %>% 
+         # mean = factor(mean)) %>%
+  filter(!is.na(mean)) %>% 
+  ungroup() %>%
+  group_by(geographic_area_name) %>% 
+  arrange(desc(mean)) %>% 
+  filter(row_number() %in% c(2:3))
+ # box_df2
+```
+
+```{r}
+box_df2 %>%
+  # mutate(mean = factor(mean)) %>%
+  # arrange(mean) %>% 
+  # group_by(name) %>% 
+  ggplot(aes(x = fct_reorder(name, value), y = value, group = name)) +
+  geom_boxplot() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+```
+
+```{r}
+box_df3 = data %>% 
+  pivot_longer(cols = 2:ncol(.)) %>% 
+  # mutate(name = factor(name)) %>% 
+  group_by(name) %>% 
+  mutate(mean = mean(value)) %>% 
+         # mean = factor(mean)) %>%
+  filter(!is.na(mean)) %>% 
+  ungroup() %>%
+  group_by(geographic_area_name) %>% 
+  arrange(desc(mean)) %>% 
+  filter(row_number() %in% c(4:7))
+# box_df3
+
+box_df3 %>%
+  # mutate(mean = as_factor(mean),
+  #        name = as_factor(name)) %>% 
+  # group_by(name) %>% 
+  ggplot(aes(x = fct_reorder(name, value), y = value, group = name)) +
+  geom_boxplot() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+```
+
+```{r}
+box_df4 = data %>% 
+  pivot_longer(cols = 2:ncol(.)) %>% 
+  # mutate(name = factor(name)) %>% 
+  group_by(name) %>% 
+  mutate(mean = mean(value)) %>% 
+         # mean = factor(mean)) %>%
+  filter(!is.na(mean)) %>% 
+  ungroup() %>%
+  group_by(geographic_area_name) %>% 
+  arrange(desc(mean)) %>% 
+  filter(row_number() %in% c(8:12))
+# box_df3
+
+box_df4 %>%
+  # mutate(mean = as_factor(mean),
+  #        name = as_factor(name)) %>% 
+  # group_by(name) %>% 
+  ggplot(aes(x = fct_reorder(name, value), y = value, group = name)) +
+  geom_boxplot() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+```
+
+```{r}
+box_df5 = data %>% 
+  pivot_longer(cols = 2:ncol(.)) %>% 
+  # mutate(name = factor(name)) %>% 
+  group_by(name) %>% 
+  mutate(mean = mean(value)) %>% 
+         # mean = factor(mean)) %>%
+  filter(!is.na(mean)) %>% 
+  ungroup() %>%
+  group_by(geographic_area_name) %>% 
+  arrange(desc(mean)) %>% 
+  filter(row_number() %in% c(13:18))
+# box_df3
+
+box_df5 %>%
+  # mutate(mean = as_factor(mean),
+  #        name = as_factor(name)) %>% 
+  # group_by(name) %>% 
+  ggplot(aes(x = fct_reorder(name, value), y = value, group = name)) +
+  geom_boxplot() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+```
+
+```{r}
+box_df6 = data %>% 
+  pivot_longer(cols = 2:ncol(.)) %>% 
+  # mutate(name = factor(name)) %>% 
+  group_by(name) %>% 
+  mutate(mean = mean(value)) %>% 
+         # mean = factor(mean)) %>%
+  filter(!is.na(mean)) %>% 
+  ungroup() %>%
+  group_by(geographic_area_name) %>% 
+  arrange(desc(mean)) %>% 
+  filter(row_number() %in% c(19:25))
+# box_df3
+
+box_df6 %>%
+  # mutate(mean = as_factor(mean),
+  #        name = as_factor(name)) %>% 
+  # group_by(name) %>% 
+  ggplot(aes(x = fct_reorder(name, value), y = value, group = name)) +
+  geom_boxplot() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+```
+
+```{r}
+box_df7 = data %>% 
+  pivot_longer(cols = 2:ncol(.)) %>% 
+  # mutate(name = factor(name)) %>% 
+  group_by(name) %>% 
+  mutate(mean = mean(value)) %>% 
+         # mean = factor(mean)) %>%
+  filter(!is.na(mean)) %>% 
+  ungroup() %>%
+  group_by(geographic_area_name) %>% 
+  arrange(desc(mean)) %>% 
+  filter(row_number() %in% c(26:33))
+# box_df3
+
+box_df7 %>%
+  # mutate(mean = as_factor(mean),
+  #        name = as_factor(name)) %>% 
+  # group_by(name) %>% 
+  ggplot(aes(x = fct_reorder(name, value), y = value, group = name)) +
+  geom_boxplot() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+```
+
+```{r}
+box_df8 = data %>% 
+  pivot_longer(cols = 2:ncol(.)) %>% 
+  # mutate(name = factor(name)) %>% 
+  group_by(name) %>% 
+  mutate(mean = mean(value)) %>% 
+         # mean = factor(mean)) %>%
+  filter(!is.na(mean)) %>% 
+  ungroup() %>%
+  group_by(geographic_area_name) %>% 
+  arrange(desc(mean)) %>%
+  filter(row_number() %in% c(34:45))
+# box_df3
+
+box_df8 %>%
+  # mutate(mean = as_factor(mean),
+  #        name = as_factor(name)) %>% 
+  # group_by(name) %>% 
+  ggplot(aes(x = fct_reorder(name, value), y = value, group = name)) +
+  geom_boxplot() +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.9, hjust=1))
+```
+
+# Notes
+
+```{r, include = FALSE, eval = FALSE}
+data %>% 
+  pivot_longer(cols = 2:ncol(.)) %>% 
+  # mutate(name = factor(name)) %>% 
+  group_by(name) %>% 
+  mutate(mean = mean(value)) %>% 
+         # mean = factor(mean)) %>%
+  filter(!is.na(mean)) %>% 
+  # ungroup() %>%
+  group_by(mean) %>% 
+  mutate(rank = rank(mean))
+  # filter(mean == nth(rank(mean), 1))
+  
+box_df2 = data %>% 
+  pivot_longer(cols = 2:ncol(.)) %>% 
+  # mutate(name = factor(name)) %>% 
+  group_by(name) %>% 
+  mutate(mean = mean(value)) %>% 
+         # mean = factor(mean)) %>%
+  filter(!is.na(mean)) %>%
+  # ungroup() %>%
+  arrange(desc(mean)) %>% 
+  select(name, mean) %>% 
+  distinct()
+box_df2
+```
+
+```{r, include = FALSE, eval = FALSE}
+# box_df = data %>% 
+#   pivot_longer(cols = 2:ncol(.)) %>% 
+#   group_by(name, mean(value))
+
+# str(box_df)
+# ?slice_max
+
+# choose the top 5 variables (name) by mean (mean(value))
+
+
+
+box_df = box_df %>% 
+  slice_max(mean, n = 134*5)
+
+str(box_df)
+```
+
+
+```{r, include= FALSE, eval = FALSE}
+box_df %>%
+  group_by(name) %>% 
+  ggplot(aes(x = name, y = value, group = name)) +
+  geom_boxplot() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+  
+
+```
+
+# Linear Regression
 
 ## conduct linear regression
 
@@ -84,5 +345,3 @@ pval # fit is not good
 ```{r}
 plot(fit)
 ```
-
-
