@@ -37,25 +37,15 @@ theme_set(theme_minimal() + theme(legend.position = "bottom"))
 ## Keep the outcome (cases) separate
 
 ```{r}
-cases = readxl::read_excel("./data/NassauCountyCOVID.xlsx") %>% 
+df = read_csv("./data/P_Covid Dataset January 24 2021 - Sheet1.csv") %>% 
   janitor::clean_names() %>% 
-  select(namelsad, pos_12102020)
+  select(-starts_with(c("t_covid", "t_pop")), -p_not_white)
 
-cases
-```
-
-```{r}
-df = readxl::read_excel("./data/DianaData_11_25_20.xlsx") %>% 
-  janitor::clean_names()
+head(df)
 
 # observe dataframe
 
 skimr::skim(df)
-
-# missing data in "median rooms", "mhv", and "mhi"
-
-df %>% 
-  filter(is.na(mhi))
 ```
 
 The dataset is `r nrow(df)` rows by `r ncol(df)` columns.
@@ -66,7 +56,7 @@ In this case, we will simply remove the "median rooms" variable as it is not exp
 
 The cases missing "mhv" (Median Home Value) and "mhi" (Median Household Income) values are removed for the correlation analysis.
 
-This results in a loss of efficiency of 5/134 = `r round(5/134, 3)*100` percent.
+This results in a loss of efficiency of `r round(5/134, 3)*100` percent.
 
 ```{r}
 data = df %>% 
@@ -92,21 +82,8 @@ It will be easier to examine highly correlated variables using a cutoff to view 
 
 We start with a cutoff of Pearson's R-squared $\ge$ 0.7, which results in the following:
 
-```{r, include = FALSE, eval = FALSE}
-# row.names(M)[[4]]
-M[[c(4,1)]]
-# str(M)
-# attributes(M)
-# dimnames(M)[[1]]
-length(M)
-nrow(M)
-M[[46]]
-dimnames(M)[[c(1, 46)]]
-```
-
-
 ```{r}
-output = vector(mode = "list", length = 46)
+output = vector(mode = "list", length = ncol(M))
 rname = NULL
 cname = NULL
 for(i in 1:nrow(M)) {
@@ -132,7 +109,7 @@ matrify = function(pdata = output) {
   # for(i in 1:46) {
   #   result[[i]] = vector(mode = "list", length = 46)
   # }
-  for(i in 1:46) {
+  for(i in 1:ncol(M)) {
     # for(j in 1:46) {
       result[[i]] = tibble(pdata[[c(i, i)]])
   }
@@ -162,8 +139,8 @@ matrify2 = function(pdata = output) {
     # result[[i]] = bind_rows(result[[c(i, j)]])
 }
 
-df2 = vector(mode = "list", length = 46)
-for(j in 1:46) {
+df2 = vector(mode = "list", length = ncol(M))
+for(j in 1:ncol(M)) {
   df2[[j]] = matrify2(pdata = output[[j]])
 }
 
@@ -172,7 +149,7 @@ head(df2)
 
 ```{r}
 union_df = bind_rows(df2) %>% 
-  rename("value" = "M[[i, j]]",
+  rename("r2_value" = "M[[i, j]]",
          "column" = "cname[[j]]",
          "row" = "rname[[i]]")
 ```
@@ -180,131 +157,32 @@ union_df = bind_rows(df2) %>%
 
 ```{r}
 high_df = union_df %>% 
-  filter(value >= 0.7,
-         value != 1,
+  filter(r2_value >= 0.7,
+         r2_value != 1,
          i < j)
 
 high_df
 ```
 
-There is high correlation (Pearson's R-squared > 0.7) in `r nrow(high_df)` pairs of variables.
-
-The percentage of non-white residents is highly correlated with 6 other variables, including the percent of residents who are black, hispanic, other religion, foreign born, non-English speaking and who did not graduate high school.
-
-The percentage of hispanic residents is highly correlated with 3 variables: the percent of residents who are essential workers, who have no health insurance, and who did not graduate high school.
-
-The percentage of residents who did not graduate high school is highly correlated with 7 variables: the percent of residents who are hispanic, who are essential workers, who are on SNAP, who have no health insurance, who earn less than the poverty level, who are other religion, and who are non-white.
-
-```{r, include = FALSE, eval = FALSE}
-high_df %>% 
-  mutate(n = n()) %>% 
-  group_by(column, n) %>% 
-  summarize(count = n()) %>% 
-  mutate(p = count/n)
-  # ungroup() %>% 
-  # mutate(total = sum(p))
-```
 
 ```{r}
 very_high_df = union_df %>% 
-  filter(value >= 0.8,
-         value != 1,
+  filter(r2_value >= 0.8,
+         r2_value != 1,
          i < j)
 very_high_df
 ```
 
-Furthermore, there were 6 pairs of variables with Pearson R-squared values above 0.8 including: (1) the total population and total cases of COVID-19 (Pearson R-squared `r very_high_df %>% filter(i==3) %>% pull(value)`), (2) the percent of non-white residents and the percent of Black residents (Pearson R-squared `r very_high_df %>% filter(i==8) %>% pull(value)`), (3) the percent of children and percent of family with kids (Pearson R-squared `r very_high_df %>% filter(i==10) %>% pull(value)`), (4) the percent of poverty and the percent of children in poverty (Pearson R-squared `r very_high_df %>% filter(i==19) %>% pull(value)`), (5) the percent of foreign born residents and the percent of non-English speaking residents (Pearson R-squared `r very_high_df %>% filter(i==33) %>% pull(value)`), and (6) the percent of residents who did not graduate high school and the percent who are hispanic (Pearson R-squared `r very_high_df %>% filter(i==41) %>% pull(value)`).
-
-```{r, include = FALSE, eval = FALSE}
-for(j in 1:46) {
-  matrify(output[[j]])
-}
-```
-
-
-```{r,include = FALSE,result = "hide", eval = FALSE}
-head(result)
-head(output)
-tbl = tibble(output[[1]])
-```
-
-```{r, include = FALSE, eval = FALSE}
-result = NULL
-for(i in 1:46){
-#   result[[i]] = tibble(output[[1, i]])
-# }
-#   # for(j in 1:46) {
-#   #   result[[i]] = tibble(output[[i]][[c(i, j)]])
-#   # }
-  result[[i]] = tibble(output[[c(1, i)]])
-}
-# head(result)
-bind_rows(result)
-```
-
-```{r, include = FALSE, eval = FALSE}
-str(head(output))
-output
-```
-
-```{r, include = FALSE, eval = FALSE}
-str(output[[c(1, 1)]])
-result = vector(mode = "list", length = 1)
-for (i in 1:5) {
-  result[[i]] = bind_cols(output[[c(1, 1)]][[i]])
-}
-result
-output[[c(1, 1)]]
-# ?tibble
-# length(output)
-# output[[3]][[46]]
-# output[[c(46, 46)]]
-# ?map
-result = vector(mode = "list", length = 46)
-for(i in 1:length(output[[i]])) {
-  
-#   result[[i]] = map(output[[i]], ~bind_rows(.))
-# }
-  for(j in 1:length(output[[i]])) {
-    result[[c(i, j)]] = map(output[[c(i, j)]], bind_rows)
-  }
-}
-head(output)
-# ?bind_cols
-head(str(head(output)))
-head(output)
-output[[c(i, j)]]
-output = bind_rows
-# ?
-head(output)
-#   rname[[i]] = row.names(M)[[i]]
-#   cname[[i]] = col
-#   output[[i]] = M[[i]] %>% 
-#     filter()
-# }
-# M %>% 
-#   filter()
-```
 
 # prcomp
 
 ```{r}
-pca = prcomp(data[,-1])
-fviz_eig(pca)
-  # ?screeplot
-```
-
-```{r}
-a = fviz_contrib(pca, choice = "var", axes = 1) 
-b = fviz_contrib(pca, choice = "var", axes = 2) 
-grid.arrange(a, b, nrow = 2)
-```
-
-The PCA isn't working because of the size of the mhv and mhi variables. A centered scaled dataset is needed.
-
-```{r}
-pca1 = prcomp(data[,-1], scale = TRUE)
+pca1 = prcomp(data[,-1], center = TRUE, scale = TRUE)
 fviz_eig(pca1)
+
+pca10 = principal(data[,-1], nfactors = 2, rotate = "varimax")
+print(pca10)
+fa.parallel(data[,-1])
 ```
 
 ```{r}
@@ -313,188 +191,18 @@ b = fviz_contrib(pca1, choice = "var", axes = 2)
 grid.arrange(a, b, nrow = 2)
 ```
 
-# Part 2
-
-## read in data
-
-```{r, results = "hide"}
-cs_data = readxl::read_excel("./data/CR_Index_Jared_12_22_20.xlsx", sheet = "Score") %>% 
-  janitor::clean_names()
-
-skimr::skim(cs_data)
-```
-
-There is no missing data.
-
-## check a correlation analysis
-
-```{r}
-cs_matrify = function(pdata = cs_output) {
-  result = vector(mode = "list", length = 35)
-  for(i in 1:35) {
-      result[[i]] = tibble(pdata[[i]])
-  }
-  result = bind_rows(result)
-  return(result)
-}
-```
-
-
-```{r}
-M2 = cor(cs_data[,-1])
-
-# length(M2)
-# ncol(M2)
-# length(cs_output)
-
-cs_output = vector(mode = "list", length = length(M2))
-rname = NULL
-cname = NULL
-for(i in 1:nrow(M2)) {
-  for(j in 1:ncol(M2)) {
-    rname[[i]] = dimnames(M2)[[c(1, i)]]
-    cname[[j]] = dimnames(M2)[[c(2, j)]]
-    cs_output[[c(i, j)]] = tibble_row(i, j, rname[[i]], cname[[j]], M2[[i, j]])
-  }
-}
-
-# matrify = function(pdata = cs_output) {
-#   for(i in 1:length(M2)) {
-#       result[[i]] = tibble(pdata[[c(i, i)]])
-#   }
-#   result = bind_rows(result)
-#   return(result)
-# }
-# 
-# matrify()
-
-# cs_output[[35]]
-
-cs_df = vector(mode = "list", length = 35)
-for(j in 1:35) {
-  cs_df[[j]] = cs_matrify(pdata = cs_output[[j]])
-}
-
-# head(cs_df)
-
-union_cs_df = bind_rows(cs_df) %>% 
-  rename("value" = "M2[[i, j]]",
-         "column" = "cname[[j]]",
-         "row" = "rname[[i]]")
-```
-
-```{r}
-high_df = union_cs_df %>% 
-  filter(value >= 0.7,
-         value != 1,
-         i < j)
-
-high_df
-
-very_high_df = union_cs_df %>% 
-  filter(value >= 0.8,
-         value != 1,
-         i < j)
-very_high_df
-```
-
-```{r}
-# ?prcomp
-pca = prcomp(cs_data[,-1])
-fviz_eig(pca)
-# ?fviz_eig
-```
-
-
-```{r}
-a = fviz_contrib(pca, choice = "var", axes = 1) 
-b = fviz_contrib(pca, choice = "var", axes = 2) 
-c = fviz_contrib(pca, choice = "var", axes = 3) 
-grid.arrange(a, b, c, nrow = 3)
-```
-
 # Center and Scale (confirm data) - PCA
 
-```{r}
-centered_x = scale(data[,-1])
-rownames(centered_x) = data$geographic_area_name
-```
-
-```{r}
-# cs_matrify = function(pdata = cs_output) {
-#   result = vector(mode = "list", length = 35)
-#   for(i in 1:35) {
-#       result[[i]] = tibble(pdata[[i]])
-#   }
-#   result = bind_rows(result)
-#   return(result)
-# }
-```
-
-```{r}
-centered_M = cor(centered_x)
-centered_output = vector(mode = "list", length = length(centered_M))
-rname = NULL
-cname = NULL
-for(i in 1:nrow(centered_M)) {
-  for(j in 1:ncol(centered_M)) {
-    rname[[i]] = dimnames(centered_M)[[c(1, i)]]
-    cname[[j]] = dimnames(centered_M)[[c(2, j)]]
-    centered_output[[c(i, j)]] = tibble_row(i, j, rname[[i]], cname[[j]], centered_M[[i, j]])
-  }
-}
-```
-
-```{r}
-centered_df = vector(mode = "list", length = 35)
-for(j in 1:35) {
-  centered_df[[j]] = cs_matrify(pdata = centered_output[[j]])
-}
-```
-
-```{r}
-union_centered_df = bind_rows(centered_df) %>% 
-  rename("value" = "centered_M[[i, j]]",
-         "column" = "cname[[j]]",
-         "row" = "rname[[i]]")
-```
-
-```{r}
-high_df = union_centered_df %>% 
-  filter(value >= 0.7,
-         value != 1,
-         i < j)
-
-high_df
-
-very_high_df = union_centered_df %>% 
-  filter(value >= 0.8,
-         value != 1,
-         i < j)
-very_high_df
-```
-
-There are fewer highly correlated variables using the method of "scale" in R than the dataset provided.
 
 ```{r, fig.height = 12, fig.width = 14}
-pca2 = prcomp(centered_x)
-fviz_eig(pca2)
-biplot(pca2)
+biplot(pca10)
 ```
-
-```{r}
-a = fviz_contrib(pca, choice = "var", axes = 1) 
-b = fviz_contrib(pca, choice = "var", axes = 2) 
-grid.arrange(a, b, nrow = 2)
-```
-
-These results are similar to those using the option "scale" in the "prcomp" function as earlier. This makes sense, since the option "scale" sends the data to the "scale" function.
 
 ## psych package
 
 ```{r}
 # ?principal
-fit = principal(M2, nfactors = 4, rotate = "promax")
+fit = principal(M, nfactors = 6, rotate = "promax")
 fit
 ```
 
@@ -503,7 +211,7 @@ fit
 ```{r, fig.height = 16, fig.width = 14}
 # ?iclust
 # pdf()
-fit2 = iclust(M2, plot = TRUE)
+fit2 = iclust(M, plot = TRUE)
 # dev.off()
 fit2
 ```
@@ -514,7 +222,8 @@ fit2
 Further  methods in unsupervised learning
 
 ```{r}
-fviz_nbclust(centered_x,
+# ?fviz_nbclust
+fviz_nbclust(scale(data[,-1]),
              FUNcluster = kmeans,
              method = "silhouette")
 ```
@@ -522,7 +231,7 @@ fviz_nbclust(centered_x,
 
 ```{r}
 set.seed(719)
-km <- kmeans(centered_x, centers = 3)
+km <- kmeans(scale(data[,-1]), centers = 2)
 # km2 <- kmeans(data[,-1], centers = 4)
 # ?kmeans
 # km2$cluster
@@ -556,7 +265,7 @@ data %>%
 
 ```{r, fig.height = 12, fig.width = 14}
 # ?fviz_cluster
-km_vis <- fviz_cluster(list(data = centered_x, cluster = km$cluster),
+km_vis <- fviz_cluster(list(data = scale(data[,-1]), cluster = km$cluster),
                        ellipse.type = "convex", 
                        geom = c("point","text"),
                        labelsize = 10) + 
@@ -568,9 +277,9 @@ km_vis
 # Hierarchical Clustering
 
 ```{r}
-hc.complete <- hclust(dist(centered_x), method = "complete")
+hc.complete <- hclust(dist(scale(data[,-1])), method = "complete")
 
-fviz_dend(hc.complete, k = 3,        
+fviz_dend(hc.complete, k = 2,        
           cex = 0.5, 
           palette = "jco", 
           color_labels_by_k = TRUE,
@@ -579,7 +288,7 @@ fviz_dend(hc.complete, k = 3,
 
 # ?fviz_dend
 
-ind4.complete <- cutree(hc.complete, 3)
+ind4.complete <- cutree(hc.complete, 2)
 # str(ind4.complete)
 # names(ind4.complete)
 # 
@@ -588,8 +297,9 @@ ind4.complete <- cutree(hc.complete, 3)
 #   filter()
 ```
 
+## further clustering techniques
 
-```{r}
+```{r, include = FALSE, eval = FALSE}
 hc.average <- hclust(dist(centered_x), method = "average")
 
 fviz_dend(hc.average, k = 3,        
@@ -608,7 +318,7 @@ ind4.complete <- cutree(hc.complete, 3)
 ```
 
 
-```{r}
+```{r, include = FALSE, eval = FALSE}
 hc.single <- hclust(dist(data[,-1]), method = "single")
 
 fviz_dend(hc.single, k = 3,        
@@ -627,7 +337,7 @@ ind4.complete <- cutree(hc.complete, 3)
 ```
 
 
-```{r}
+```{r, include = FALSE, eval = FALSE}
 hc.centroid <- hclust(dist(data[,-1]), method = "centroid")
 
 fviz_dend(hc.centroid, k = 3,        
